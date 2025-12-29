@@ -1,0 +1,24 @@
+{
+  "name": "votehub-voting-platform",
+  "version": "1.0.0",
+  "description": "Fake complete voting platform with Google OAuth simulation",
+  "scripts": {
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "server": "cd server && node index.js",
+    "client": "cd client && npm run dev",
+    "demo-google": "concurrently --kill-others-on-fail --prefix-colors \"bgBlue.bold,bgMagenta.bold\" \"npm run server\" \"npm run client\"",
+    "install-all": "npm install && cd server && npm install && cd ../client && npm install",
+    "start": "npm run demo-google"
+  },
+  "keywords": [
+    "voting",
+    "react",
+    "nodejs",
+    "google-oauth"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

@@ -1,0 +1,1095 @@
+{
+  "room": {
+    "id": "room-776a4o109",
+    "name": "Intuitive fault-tolerant protocol",
+    "code": "T0MW3G",
+    "description": "Bestia capitulus adnuo benigne una. Dolore magni est urbanus. Defero cubo vespillo conduco ratione terreo stipes exercitationem demonstro.",
+    "createdAt": "2025-12-28T16:27:06.609Z"
+  },
+  "polls": [
+    {
+      "id": "poll-689rxjruh",
+      "question": "Callide spargo officiis abundans.?",
+      "options": [
+        {
+          "id": "opt1",
+          "text": "technologist geez",
+          "votes": 17
+        },
+        {
+          "id": "opt2",
+          "text": "worth psst",
+          "votes": 13
+        },
+        {
+          "id": "opt3",
+          "text": "blah golden",
+          "votes": 10
+        }
+      ],
+      "status": "active",
+      "totalVotes": 40,
+      "createdAt": "2025-12-29T06:23:25.338Z"
+    },
+    {
+      "id": "poll-eeaf15hjw",
+      "question": "Tremo triduana fugit sulum dens spectaculum thesis.?",
+      "options": [
+        {
+          "id": "opt1",
+          "text": "upwardly thigh",
+          "votes": 12
+        },
+        {
+          "id": "opt2",
+          "text": "versus silver",
+          "votes": 14
+        },
+        {
+          "id": "opt3",
+          "text": "unzip mainstream",
+          "votes": 13
+        }
+      ],
+      "status": "active",
+      "totalVotes": 39,
+      "createdAt": "2025-12-28T22:57:33.060Z"
+    },
+    {
+      "id": "poll-5tcuoi0hb",
+      "question": "Possimus cohibeo thesaurus arx damnatio ipsam.?",
+      "options": [
+        {
+          "id": "opt1",
+          "text": "splay urgently",
+          "votes": 15
+        },
+        {
+          "id": "opt2",
+          "text": "repurpose while",
+          "votes": 23
+        },
+        {
+          "id": "opt3",
+          "text": "what woot",
+          "votes": 11
+        }
+      ],
+      "status": "active",
+      "totalVotes": 49,
+      "createdAt": "2025-12-28T22:25:49.901Z"
+    },
+    {
+      "id": "poll-m5yh5g3jm",
+      "question": "Theatrum sunt ullam voluptates coaegresco confero vociferor exercitationem pel absum.?",
+      "options": [
+        {
+          "id": "opt1",
+          "text": "foolish sore",
+          "votes": 11
+        },
+        {
+          "id": "opt2",
+          "text": "along peppery",
+          "votes": 13
+        },
+        {
+          "id": "opt3",
+          "text": "obediently beneath",
+          "votes": 11
+        }
+      ],
+      "status": "active",
+      "totalVotes": 35,
+      "createdAt": "2025-12-29T08:04:07.704Z"
+    }
+  ],
+  "votes": [
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt3",
+      "userEmail": "Judy1@hotmail.com",
+      "timestamp": "2025-12-29T00:38:45.183Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt3",
+      "userEmail": "Minerva28@gmail.com",
+      "timestamp": "2025-12-29T07:33:58.179Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt1",
+      "userEmail": "Norberto7@yahoo.com",
+      "timestamp": "2025-12-28T22:16:36.577Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt2",
+      "userEmail": "Jackeline_Lind@hotmail.com",
+      "timestamp": "2025-12-29T06:12:03.085Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt1",
+      "userEmail": "Jordane14@gmail.com",
+      "timestamp": "2025-12-29T15:59:27.499Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt2",
+      "userEmail": "demo@votehub.com",
+      "timestamp": "2025-12-29T05:37:46.812Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt3",
+      "userEmail": "Annabel17@gmail.com",
+      "timestamp": "2025-12-29T15:04:54.574Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt2",
+      "userEmail": "Erwin66@yahoo.com",
+      "timestamp": "2025-12-28T23:52:55.125Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt1",
+      "userEmail": "Brendon_Gleichner@hotmail.com",
+      "timestamp": "2025-12-29T15:15:28.472Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt2",
+      "userEmail": "Sincere39@hotmail.com",
+      "timestamp": "2025-12-29T05:16:02.839Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt3",
+      "userEmail": "Jaron.Prosacco74@gmail.com",
+      "timestamp": "2025-12-29T12:11:58.059Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt2",
+      "userEmail": "Hertha_Stroman-Muller@hotmail.com",
+      "timestamp": "2025-12-29T12:17:24.118Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt1",
+      "userEmail": "Miguel49@yahoo.com",
+      "timestamp": "2025-12-29T14:20:35.170Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt1",
+      "userEmail": "Angelina_Gutmann@yahoo.com",
+      "timestamp": "2025-12-29T13:49:00.000Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt3",
+      "userEmail": "Ricky_Senger@gmail.com",
+      "timestamp": "2025-12-29T12:25:12.551Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt1",
+      "userEmail": "Sydnee_Pagac@hotmail.com",
+      "timestamp": "2025-12-28T22:48:55.755Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt3",
+      "userEmail": "Zita_King@yahoo.com",
+      "timestamp": "2025-12-29T11:02:44.243Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt1",
+      "userEmail": "Dawson28@hotmail.com",
+      "timestamp": "2025-12-28T21:49:43.802Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt2",
+      "userEmail": "Zita_King@yahoo.com",
+      "timestamp": "2025-12-29T07:38:30.588Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt2",
+      "userEmail": "Carlos.Will@yahoo.com",
+      "timestamp": "2025-12-29T00:28:45.078Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt3",
+      "userEmail": "Jaron.Prosacco74@gmail.com",
+      "timestamp": "2025-12-29T13:38:31.727Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt1",
+      "userEmail": "Dawson28@hotmail.com",
+      "timestamp": "2025-12-29T08:02:21.935Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt2",
+      "userEmail": "Bridgette52@yahoo.com",
+      "timestamp": "2025-12-29T08:14:54.413Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt1",
+      "userEmail": "Hertha_Stroman-Muller@hotmail.com",
+      "timestamp": "2025-12-28T17:33:37.638Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt1",
+      "userEmail": "Laurel_Dare@gmail.com",
+      "timestamp": "2025-12-29T14:52:08.648Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt1",
+      "userEmail": "Dino.Schaden@yahoo.com",
+      "timestamp": "2025-12-29T04:23:07.172Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt1",
+      "userEmail": "Emmanuel.Fisher-Hane@yahoo.com",
+      "timestamp": "2025-12-29T06:37:45.109Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt1",
+      "userEmail": "Jovany_Stamm@gmail.com",
+      "timestamp": "2025-12-29T01:02:31.579Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt1",
+      "userEmail": "Geoffrey.Kub@yahoo.com",
+      "timestamp": "2025-12-29T14:10:14.696Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt2",
+      "userEmail": "Jackeline_Lind@hotmail.com",
+      "timestamp": "2025-12-29T07:37:51.054Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt1",
+      "userEmail": "Winnifred.Legros@gmail.com",
+      "timestamp": "2025-12-28T16:06:59.710Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt2",
+      "userEmail": "Brendon_Gleichner@hotmail.com",
+      "timestamp": "2025-12-29T11:24:09.866Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt3",
+      "userEmail": "Minerva28@gmail.com",
+      "timestamp": "2025-12-29T08:03:22.934Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt3",
+      "userEmail": "Arnaldo2@gmail.com",
+      "timestamp": "2025-12-29T10:58:17.734Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt1",
+      "userEmail": "demo@votehub.com",
+      "timestamp": "2025-12-29T05:17:57.837Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt2",
+      "userEmail": "Jordane14@gmail.com",
+      "timestamp": "2025-12-28T20:23:55.975Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt2",
+      "userEmail": "Carlos.Will@yahoo.com",
+      "timestamp": "2025-12-29T07:12:09.339Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt2",
+      "userEmail": "Alexandre_Bashirian@hotmail.com",
+      "timestamp": "2025-12-28T16:05:35.810Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt1",
+      "userEmail": "Jackeline_Lind@hotmail.com",
+      "timestamp": "2025-12-29T10:00:24.965Z"
+    },
+    {
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt3",
+      "userEmail": "Norberto7@yahoo.com",
+      "timestamp": "2025-12-28T21:24:50.047Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt2",
+      "userEmail": "Minerva28@gmail.com",
+      "timestamp": "2025-12-29T03:25:45.279Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt1",
+      "userEmail": "Jackeline_Lind@hotmail.com",
+      "timestamp": "2025-12-28T23:00:19.432Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt1",
+      "userEmail": "Clay_Block93@yahoo.com",
+      "timestamp": "2025-12-29T13:44:02.951Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt1",
+      "userEmail": "Dino.Schaden@yahoo.com",
+      "timestamp": "2025-12-29T01:21:54.147Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt1",
+      "userEmail": "Jaron.Prosacco74@gmail.com",
+      "timestamp": "2025-12-29T12:39:15.585Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt2",
+      "userEmail": "Norberto7@yahoo.com",
+      "timestamp": "2025-12-29T03:32:51.696Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt2",
+      "userEmail": "Leonor51@hotmail.com",
+      "timestamp": "2025-12-28T16:36:27.467Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt2",
+      "userEmail": "Sydnee_Pagac@hotmail.com",
+      "timestamp": "2025-12-29T05:48:49.421Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt3",
+      "userEmail": "Jackeline_Lind@hotmail.com",
+      "timestamp": "2025-12-29T02:49:12.168Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt3",
+      "userEmail": "Dawson28@hotmail.com",
+      "timestamp": "2025-12-28T21:44:10.031Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt2",
+      "userEmail": "Trinity.Padberg@yahoo.com",
+      "timestamp": "2025-12-29T01:44:43.053Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt1",
+      "userEmail": "Norberto7@yahoo.com",
+      "timestamp": "2025-12-29T08:49:02.458Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt2",
+      "userEmail": "Giovanni15@hotmail.com",
+      "timestamp": "2025-12-29T03:50:10.154Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt2",
+      "userEmail": "Paxton_Cronin15@gmail.com",
+      "timestamp": "2025-12-29T00:18:38.000Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt2",
+      "userEmail": "Jackeline_Lind@hotmail.com",
+      "timestamp": "2025-12-28T16:50:58.446Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt2",
+      "userEmail": "Norberto7@yahoo.com",
+      "timestamp": "2025-12-29T08:22:05.550Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt3",
+      "userEmail": "Minerva28@gmail.com",
+      "timestamp": "2025-12-29T03:47:53.377Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt3",
+      "userEmail": "Noah_Tremblay@gmail.com",
+      "timestamp": "2025-12-29T05:25:24.152Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt2",
+      "userEmail": "Zita_King@yahoo.com",
+      "timestamp": "2025-12-28T17:28:30.179Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt3",
+      "userEmail": "Filomena_Hodkiewicz40@hotmail.com",
+      "timestamp": "2025-12-29T00:59:23.139Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt1",
+      "userEmail": "Colin.Cummerata@hotmail.com",
+      "timestamp": "2025-12-29T09:32:52.957Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt1",
+      "userEmail": "Ricky_Senger@gmail.com",
+      "timestamp": "2025-12-29T13:32:58.320Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt3",
+      "userEmail": "Minerva28@gmail.com",
+      "timestamp": "2025-12-28T23:05:50.842Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt3",
+      "userEmail": "Thomas11@hotmail.com",
+      "timestamp": "2025-12-29T11:12:50.778Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt2",
+      "userEmail": "Marjory.Jacobs84@gmail.com",
+      "timestamp": "2025-12-29T08:54:42.285Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt1",
+      "userEmail": "Jaron.Prosacco74@gmail.com",
+      "timestamp": "2025-12-29T11:08:22.218Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt3",
+      "userEmail": "Trinity.Padberg@yahoo.com",
+      "timestamp": "2025-12-28T19:15:05.351Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt3",
+      "userEmail": "Paxton_Cronin15@gmail.com",
+      "timestamp": "2025-12-29T13:09:07.368Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt1",
+      "userEmail": "Judy1@hotmail.com",
+      "timestamp": "2025-12-28T20:25:09.312Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt3",
+      "userEmail": "Brandt.Upton34@yahoo.com",
+      "timestamp": "2025-12-29T10:26:35.764Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt2",
+      "userEmail": "Enoch.Gottlieb71@gmail.com",
+      "timestamp": "2025-12-29T05:41:22.283Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt1",
+      "userEmail": "Joanne57@gmail.com",
+      "timestamp": "2025-12-28T20:13:04.808Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt3",
+      "userEmail": "Xavier.Littel@gmail.com",
+      "timestamp": "2025-12-29T06:14:32.797Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt3",
+      "userEmail": "Brandt.Upton34@yahoo.com",
+      "timestamp": "2025-12-29T12:20:48.008Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt2",
+      "userEmail": "Jackeline_Lind@hotmail.com",
+      "timestamp": "2025-12-29T15:42:26.567Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt1",
+      "userEmail": "Dino.Schaden@yahoo.com",
+      "timestamp": "2025-12-29T08:12:14.092Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt3",
+      "userEmail": "Bridgette52@yahoo.com",
+      "timestamp": "2025-12-29T07:16:21.264Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt1",
+      "userEmail": "Clay_Block93@yahoo.com",
+      "timestamp": "2025-12-29T13:06:05.227Z"
+    },
+    {
+      "pollId": "poll-eeaf15hjw",
+      "optionId": "opt2",
+      "userEmail": "admin@votehub.com",
+      "timestamp": "2025-12-29T05:14:29.674Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt1",
+      "userEmail": "Thomas11@hotmail.com",
+      "timestamp": "2025-12-28T19:50:22.835Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt2",
+      "userEmail": "Geoffrey.Kub@yahoo.com",
+      "timestamp": "2025-12-29T15:52:13.557Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt2",
+      "userEmail": "Bianka.Rowe@hotmail.com",
+      "timestamp": "2025-12-28T20:16:25.564Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt3",
+      "userEmail": "Laurel_Dare@gmail.com",
+      "timestamp": "2025-12-28T21:01:42.543Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt3",
+      "userEmail": "Gwendolyn_Boyle56@hotmail.com",
+      "timestamp": "2025-12-28T22:41:42.915Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt1",
+      "userEmail": "Dannie49@yahoo.com",
+      "timestamp": "2025-12-29T00:04:16.537Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt1",
+      "userEmail": "Jaron.Prosacco74@gmail.com",
+      "timestamp": "2025-12-29T06:26:48.858Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt1",
+      "userEmail": "Carson.Skiles92@gmail.com",
+      "timestamp": "2025-12-29T11:10:04.985Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt2",
+      "userEmail": "Antwan.Hegmann@gmail.com",
+      "timestamp": "2025-12-28T17:56:24.140Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt2",
+      "userEmail": "Annabel17@gmail.com",
+      "timestamp": "2025-12-28T16:31:51.383Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt2",
+      "userEmail": "Clay_Block93@yahoo.com",
+      "timestamp": "2025-12-29T15:15:33.583Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt3",
+      "userEmail": "Trinity.Padberg@yahoo.com",
+      "timestamp": "2025-12-29T11:26:23.306Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt2",
+      "userEmail": "Abdullah.Bernier@yahoo.com",
+      "timestamp": "2025-12-29T13:18:46.383Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt1",
+      "userEmail": "Brendon_Gleichner@hotmail.com",
+      "timestamp": "2025-12-29T06:19:55.566Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt2",
+      "userEmail": "Dannie49@yahoo.com",
+      "timestamp": "2025-12-29T07:48:47.916Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt1",
+      "userEmail": "Noah_Tremblay@gmail.com",
+      "timestamp": "2025-12-29T12:28:15.994Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt2",
+      "userEmail": "Abdullah.Bernier@yahoo.com",
+      "timestamp": "2025-12-29T05:51:19.881Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt3",
+      "userEmail": "Carson.Skiles92@gmail.com",
+      "timestamp": "2025-12-28T21:27:45.172Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt3",
+      "userEmail": "Domenico.Lemke@yahoo.com",
+      "timestamp": "2025-12-29T01:01:53.114Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt1",
+      "userEmail": "Jovany_Stamm@gmail.com",
+      "timestamp": "2025-12-29T04:49:40.435Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt2",
+      "userEmail": "Alexandre_Bashirian@hotmail.com",
+      "timestamp": "2025-12-28T18:05:49.171Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt2",
+      "userEmail": "Giovanni15@hotmail.com",
+      "timestamp": "2025-12-29T00:24:55.196Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt2",
+      "userEmail": "Zita_King@yahoo.com",
+      "timestamp": "2025-12-28T16:32:12.088Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt1",
+      "userEmail": "Marjory.Jacobs84@gmail.com",
+      "timestamp": "2025-12-28T20:12:35.168Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt2",
+      "userEmail": "Leonor51@hotmail.com",
+      "timestamp": "2025-12-28T18:59:46.777Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt2",
+      "userEmail": "Gwendolyn_Boyle56@hotmail.com",
+      "timestamp": "2025-12-28T20:09:11.637Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt2",
+      "userEmail": "Ricky_Senger@gmail.com",
+      "timestamp": "2025-12-28T22:11:03.574Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt2",
+      "userEmail": "Emmanuel.Fisher-Hane@yahoo.com",
+      "timestamp": "2025-12-29T15:49:50.195Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt2",
+      "userEmail": "Domenico.Lemke@yahoo.com",
+      "timestamp": "2025-12-29T11:40:18.948Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt3",
+      "userEmail": "Xavier.Littel@gmail.com",
+      "timestamp": "2025-12-28T16:25:33.155Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt1",
+      "userEmail": "Dino.Schaden@yahoo.com",
+      "timestamp": "2025-12-29T00:58:39.603Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt1",
+      "userEmail": "Sincere39@hotmail.com",
+      "timestamp": "2025-12-29T10:14:20.987Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt2",
+      "userEmail": "Xavier.Littel@gmail.com",
+      "timestamp": "2025-12-29T15:34:54.881Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt2",
+      "userEmail": "Emmanuel.Fisher-Hane@yahoo.com",
+      "timestamp": "2025-12-29T10:48:27.892Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt2",
+      "userEmail": "Winnifred.Legros@gmail.com",
+      "timestamp": "2025-12-29T02:17:09.804Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt3",
+      "userEmail": "Winnifred.Legros@gmail.com",
+      "timestamp": "2025-12-29T04:46:31.700Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt3",
+      "userEmail": "Giovanni15@hotmail.com",
+      "timestamp": "2025-12-29T04:17:55.695Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt1",
+      "userEmail": "Angelina_Gutmann@yahoo.com",
+      "timestamp": "2025-12-29T15:58:06.235Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt2",
+      "userEmail": "Clay_Block93@yahoo.com",
+      "timestamp": "2025-12-29T02:18:45.158Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt1",
+      "userEmail": "Carson.Skiles92@gmail.com",
+      "timestamp": "2025-12-28T22:10:32.411Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt3",
+      "userEmail": "Dino.Schaden@yahoo.com",
+      "timestamp": "2025-12-29T07:37:01.902Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt3",
+      "userEmail": "Arnaldo2@gmail.com",
+      "timestamp": "2025-12-29T12:27:35.684Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt2",
+      "userEmail": "Leonor51@hotmail.com",
+      "timestamp": "2025-12-29T08:17:19.675Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt1",
+      "userEmail": "Giovanni15@hotmail.com",
+      "timestamp": "2025-12-29T01:32:36.705Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt1",
+      "userEmail": "Filomena_Hodkiewicz40@hotmail.com",
+      "timestamp": "2025-12-28T16:40:12.088Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt2",
+      "userEmail": "Jaron.Prosacco74@gmail.com",
+      "timestamp": "2025-12-29T15:08:11.003Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt3",
+      "userEmail": "Judy1@hotmail.com",
+      "timestamp": "2025-12-28T20:39:20.254Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt2",
+      "userEmail": "Jovany_Stamm@gmail.com",
+      "timestamp": "2025-12-28T17:35:33.106Z"
+    },
+    {
+      "pollId": "poll-5tcuoi0hb",
+      "optionId": "opt1",
+      "userEmail": "Winnifred.Legros@gmail.com",
+      "timestamp": "2025-12-29T08:24:28.844Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt2",
+      "userEmail": "Leonor51@hotmail.com",
+      "timestamp": "2025-12-28T23:44:07.573Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt1",
+      "userEmail": "demo@votehub.com",
+      "timestamp": "2025-12-28T23:00:32.668Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt3",
+      "userEmail": "Dannie49@yahoo.com",
+      "timestamp": "2025-12-28T16:56:03.462Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt1",
+      "userEmail": "Abdullah.Bernier@yahoo.com",
+      "timestamp": "2025-12-29T09:00:28.599Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt2",
+      "userEmail": "Brandt.Upton34@yahoo.com",
+      "timestamp": "2025-12-28T17:08:13.659Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt2",
+      "userEmail": "Hertha_Stroman-Muller@hotmail.com",
+      "timestamp": "2025-12-29T01:23:02.298Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt2",
+      "userEmail": "Jovany_Stamm@gmail.com",
+      "timestamp": "2025-12-29T00:38:19.581Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt2",
+      "userEmail": "Geoffrey.Kub@yahoo.com",
+      "timestamp": "2025-12-29T07:05:57.415Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt3",
+      "userEmail": "Geoffrey.Kub@yahoo.com",
+      "timestamp": "2025-12-29T11:46:14.149Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt2",
+      "userEmail": "Geoffrey.Kub@yahoo.com",
+      "timestamp": "2025-12-29T15:04:00.724Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt3",
+      "userEmail": "Dino.Schaden@yahoo.com",
+      "timestamp": "2025-12-28T22:50:14.265Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt2",
+      "userEmail": "Abdullah.Bernier@yahoo.com",
+      "timestamp": "2025-12-28T21:17:48.989Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt3",
+      "userEmail": "Dino.Schaden@yahoo.com",
+      "timestamp": "2025-12-28T22:28:10.939Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt3",
+      "userEmail": "Abdullah.Bernier@yahoo.com",
+      "timestamp": "2025-12-29T05:06:55.175Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt3",
+      "userEmail": "Hyman64@gmail.com",
+      "timestamp": "2025-12-28T20:47:30.394Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt1",
+      "userEmail": "Hertha_Stroman-Muller@hotmail.com",
+      "timestamp": "2025-12-29T03:31:51.383Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt1",
+      "userEmail": "Hertha_Stroman-Muller@hotmail.com",
+      "timestamp": "2025-12-29T13:09:38.073Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt1",
+      "userEmail": "Laurel_Dare@gmail.com",
+      "timestamp": "2025-12-28T21:02:02.622Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt3",
+      "userEmail": "Paxton_Cronin15@gmail.com",
+      "timestamp": "2025-12-28T22:00:19.163Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt2",
+      "userEmail": "Giovanni15@hotmail.com",
+      "timestamp": "2025-12-29T09:52:13.087Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt3",
+      "userEmail": "Marjory.Jacobs84@gmail.com",
+      "timestamp": "2025-12-28T21:41:07.938Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt2",
+      "userEmail": "Sydnee_Pagac@hotmail.com",
+      "timestamp": "2025-12-29T08:31:00.757Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt2",
+      "userEmail": "Sydnee_Pagac@hotmail.com",
+      "timestamp": "2025-12-29T09:25:44.590Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt2",
+      "userEmail": "Minerva28@gmail.com",
+      "timestamp": "2025-12-29T03:43:04.982Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt1",
+      "userEmail": "Angelina_Gutmann@yahoo.com",
+      "timestamp": "2025-12-29T10:44:52.898Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt3",
+      "userEmail": "Annabel17@gmail.com",
+      "timestamp": "2025-12-28T20:47:44.186Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt1",
+      "userEmail": "Geoffrey.Kub@yahoo.com",
+      "timestamp": "2025-12-29T10:13:24.374Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt2",
+      "userEmail": "Zita_King@yahoo.com",
+      "timestamp": "2025-12-28T19:20:35.204Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt1",
+      "userEmail": "Carlos.Will@yahoo.com",
+      "timestamp": "2025-12-28T19:48:37.528Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt1",
+      "userEmail": "Dawson28@hotmail.com",
+      "timestamp": "2025-12-29T10:20:35.140Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt1",
+      "userEmail": "Hyman64@gmail.com",
+      "timestamp": "2025-12-28T23:53:33.711Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt3",
+      "userEmail": "Laurel_Dare@gmail.com",
+      "timestamp": "2025-12-29T04:43:22.113Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt3",
+      "userEmail": "Angelina_Gutmann@yahoo.com",
+      "timestamp": "2025-12-29T05:41:14.388Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt1",
+      "userEmail": "Minerva28@gmail.com",
+      "timestamp": "2025-12-29T07:48:24.071Z"
+    },
+    {
+      "pollId": "poll-m5yh5g3jm",
+      "optionId": "opt2",
+      "userEmail": "Enoch.Gottlieb71@gmail.com",
+      "timestamp": "2025-12-29T02:29:28.791Z"
+    },
+    {
+      "id": "vote-1767027909104-0tgpttq5e",
+      "pollId": "poll-689rxjruh",
+      "optionId": "opt2",
+      "userEmail": "admin@antigravitie.com",
+      "votedAt": "2025-12-29T17:05:09.104Z"
+    }
+  ],
+  "exportedAt": "2025-12-29T17:05:24.774Z"
+}

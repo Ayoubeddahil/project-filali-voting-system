@@ -1,0 +1,75 @@
+[
+  {
+    "id": "google-001",
+    "email": "admin@antigravitie.com",
+    "name": "Super Admin",
+    "picture": "https://ui-avatars.com/api/?name=Super+Admin&background=6366f1&color=fff&size=128",
+    "role": "super_admin",
+    "verified": true
+  },
+  {
+    "id": "google-002",
+    "email": "teacher@antigravitie.com",
+    "name": "Dr. Sarah Teacher",
+    "picture": "https://ui-avatars.com/api/?name=Sarah+Teacher&background=10b981&color=fff&size=128",
+    "role": "teacher",
+    "verified": true
+  },
+  {
+    "id": "google-003",
+    "email": "student1@antigravitie.com",
+    "name": "Alex Student",
+    "picture": "https://ui-avatars.com/api/?name=Alex+Student&background=f59e0b&color=fff&size=128",
+    "role": "student",
+    "verified": true
+  },
+  {
+    "id": "google-004",
+    "email": "student2@antigravitie.com",
+    "name": "Jordan Student",
+    "picture": "https://ui-avatars.com/api/?name=Jordan+Student&background=ef4444&color=fff&size=128",
+    "role": "student",
+    "verified": true
+  },
+  {
+    "id": "google-005",
+    "email": "professor@antigravitie.com",
+    "name": "Prof. Michael Chen",
+    "picture": "https://ui-avatars.com/api/?name=Michael+Chen&background=8b5cf6&color=fff&size=128",
+    "role": "teacher",
+    "verified": true
+  },
+  {
+    "id": "google-006",
+    "email": "student3@antigravitie.com",
+    "name": "Emma Wilson",
+    "picture": "https://ui-avatars.com/api/?name=Emma+Wilson&background=f59e0b&color=fff&size=128",
+    "role": "student",
+    "verified": true
+  },
+  {
+    "id": "google-007",
+    "email": "student4@antigravitie.com",
+    "name": "Ryan Martinez",
+    "picture": "https://ui-avatars.com/api/?name=Ryan+Martinez&background=10b981&color=fff&size=128",
+    "role": "student",
+    "verified": true
+  },
+  {
+    "id": "google-008",
+    "email": "teamlead@antigravitie.com",
+    "name": "Lisa Anderson",
+    "picture": "https://ui-avatars.com/api/?name=Lisa+Anderson&background=ef4444&color=fff&size=128",
+    "role": "manager",
+    "verified": true
+  },
+  {
+    "id": "google-009",
+    "email": "manager@antigravitie.com",
+    "name": "Mike Manager",
+    "picture": "https://ui-avatars.com/api/?name=Mike+Manager&background=8b5cf6&color=fff&size=128",
+    "role": "manager",
+    "verified": true
+  }
+]
+

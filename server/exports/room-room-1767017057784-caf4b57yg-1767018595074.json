@@ -1,0 +1,41 @@
+{
+  "room": {
+    "id": "room-1767017057784-caf4b57yg",
+    "name": "hello",
+    "code": "S817R9",
+    "description": "",
+    "createdAt": "2025-12-29T14:04:17.784Z"
+  },
+  "polls": [
+    {
+      "id": "poll-1767017908774-vzjovlqtd",
+      "question": "eftghj",
+      "options": [
+        {
+          "id": "opt-0",
+          "text": "grhtyh",
+          "votes": 0
+        },
+        {
+          "id": "opt-1",
+          "text": "thdn",
+          "votes": 1
+        }
+      ],
+      "status": "closed",
+      "totalVotes": 1,
+      "createdAt": "2025-12-29T14:18:28.774Z",
+      "endsAt": null
+    }
+  ],
+  "votes": [
+    {
+      "id": "vote-1767017921886-14ebrajq8",
+      "pollId": "poll-1767017908774-vzjovlqtd",
+      "optionId": "opt-1",
+      "userEmail": "student1@antigravitie.com",
+      "votedAt": "2025-12-29T14:18:41.886Z"
+    }
+  ],
+  "exportedAt": "2025-12-29T14:29:55.073Z"
+}
