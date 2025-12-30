@@ -3,7 +3,7 @@
 ## 🎯 Quick Demo Script (5 Minutes)
 
 ### 1. Landing Page (30 seconds)
-**Say:** "Welcome to Antigravitie - a complete voting platform built with React and Node.js. Here's our professional landing page showcasing all features."
+**Say:** "Welcome to InVote - a complete voting platform built with React and Node.js. Here's our professional landing page showcasing all features."
 
 **Show:**
 - Hero section with tagline

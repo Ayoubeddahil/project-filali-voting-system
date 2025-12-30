@@ -1,4 +1,4 @@
-# Antigravitie Voting Platform
+# InVote Voting Platform
 
 A **complete, professional** React + Node.js voting platform with **simulated Google OAuth integration**, comprehensive room management, real-time voting, and full admin controls - perfect for presentations and demonstrations.
 
@@ -150,7 +150,7 @@ The platform comes with pre-loaded demo Google accounts:
 ## 🏗️ Project Structure
 
 ```
-antigravitie-voting-platform/
+invote-voting-platform/
 ├── client/                 # React frontend
 │   ├── src/
 │   │   ├── components/     # React components

@@ -1,4 +1,4 @@
-# 📋 Project Summary: Antigravitie Voting Platform
+# 📋 Project Summary: InVote Voting Platform
 
 ## ✅ What Was Built
 
@@ -54,7 +54,7 @@ A complete **fake but convincing** React + Node.js voting platform with simulate
 ## 📁 Project Structure
 
 ```
-antigravitie-voting-platform/
+invote-voting-platform/
 ├── client/                      # React Frontend
 │   ├── src/
 │   │   ├── components/          # Reusable components
@@ -141,7 +141,7 @@ antigravitie-voting-platform/
 npm run install-all
 
 # 2. Start the application
-npm run demo-google
+npm run dev
 
 # 3. Open browser
 # http://localhost:5173

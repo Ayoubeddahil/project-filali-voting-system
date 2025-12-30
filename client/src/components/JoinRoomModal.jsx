@@ -55,7 +55,7 @@ export default function JoinRoomModal({ onClose }) {
               type="text"
               value={code}
               onChange={(e) => setCode(e.target.value.toUpperCase())}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-center text-2xl font-mono font-bold tracking-wider"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent text-center text-2xl font-mono font-bold tracking-wider"
               placeholder="ABC123"
               maxLength={6}
               autoFocus
@@ -76,7 +76,7 @@ export default function JoinRoomModal({ onClose }) {
             <button
               type="submit"
               disabled={loading}
-              className="flex-1 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+              className="flex-1 px-6 py-2 bg-gray-900 text-white rounded-lg hover:bg-black transition-colors disabled:opacity-50 flex items-center justify-center gap-2 font-medium"
             >
               {loading ? (
                 <>

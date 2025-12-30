@@ -23,7 +23,7 @@ export default function CreatePollModal({ roomId, onClose, onCreated }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    
+
     const validOptions = formData.options.filter(opt => opt.trim())
     if (validOptions.length < 2) {
       alert('Please provide at least 2 options')
@@ -94,7 +94,7 @@ export default function CreatePollModal({ roomId, onClose, onCreated }) {
               required
               value={formData.question}
               onChange={(e) => setFormData({ ...formData, question: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent"
               placeholder="What would you like to ask?"
             />
           </div>
@@ -107,7 +107,7 @@ export default function CreatePollModal({ roomId, onClose, onCreated }) {
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
               rows={2}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent"
               placeholder="Add more context about this poll..."
             />
           </div>
@@ -128,7 +128,7 @@ export default function CreatePollModal({ roomId, onClose, onCreated }) {
                       newOptions[index] = e.target.value
                       setFormData({ ...formData, options: newOptions })
                     }}
-                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent"
                     placeholder={`Option ${index + 1}`}
                   />
                   {formData.options.length > 2 && (
@@ -147,7 +147,7 @@ export default function CreatePollModal({ roomId, onClose, onCreated }) {
               <button
                 type="button"
                 onClick={addOption}
-                className="mt-2 text-sm text-blue-600 hover:text-blue-700"
+                className="mt-2 text-sm text-gray-900 hover:text-black font-medium"
               >
                 + Add Option
               </button>
@@ -181,7 +181,7 @@ export default function CreatePollModal({ roomId, onClose, onCreated }) {
                     onChange={(e) => setFormData({ ...formData, durationType: e.target.value })}
                     className="mr-2"
                   />
-                  End after: 
+                  End after:
                   <input
                     type="number"
                     value={formData.duration}
@@ -306,7 +306,7 @@ export default function CreatePollModal({ roomId, onClose, onCreated }) {
             <button
               type="submit"
               disabled={loading}
-              className="flex-1 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+              className="flex-1 px-6 py-2 bg-gray-900 text-white rounded-lg hover:bg-black transition-colors disabled:opacity-50 font-medium"
             >
               {loading ? 'Creating...' : 'Create Poll'}
             </button>

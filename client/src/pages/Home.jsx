@@ -83,7 +83,7 @@ export default function Home() {
       return
     }
 
-    setLoading(true)
+    // Do not set global loading here to avoid unmounting the input
     try {
       const promises = []
 
@@ -108,8 +108,6 @@ export default function Home() {
       }
     } catch (error) {
       console.error('Search failed:', error)
-    } finally {
-      setLoading(false)
     }
   }
 
@@ -150,7 +148,7 @@ export default function Home() {
       <>
         <Navbar />
         <div className="min-h-screen flex items-center justify-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
         </div>
       </>
     )
@@ -161,15 +159,14 @@ export default function Home() {
       <Navbar />
       <div className="min-h-screen bg-gray-50">
         {/* Generative Hero Section */}
-        <div className="bg-white border-b border-gray-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 text-center">
-              Discover & Participate
-              <span className="block text-blue-600 mt-2">Make Your Voice Heard</span>
+        <div className="bg-white border-b border-gray-100">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-8 text-center tracking-tight text-balance">
+              Find polls & communities
             </h1>
             <div className="max-w-2xl mx-auto">
-              <div className="relative">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-6 h-6" />
+              <div className="relative group">
+                <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 group-focus-within:text-gray-600 transition-colors" />
                 <input
                   type="text"
                   value={searchQuery}
@@ -179,8 +176,8 @@ export default function Home() {
                   }}
                   onFocus={() => setShowSearchDropdown(true)}
                   onBlur={() => setTimeout(() => setShowSearchDropdown(false), 200)}
-                  placeholder="Search for public rooms, polls, or topics..."
-                  className="w-full pl-12 pr-4 py-4 text-lg border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all shadow-sm focus:shadow-lg"
+                  placeholder="Search for anything..."
+                  className="w-full pl-12 pr-4 py-4 text-lg border border-gray-200 rounded-full focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all shadow-sm bg-gray-50 focus:bg-white"
                 />
                 {showSearchDropdown && (
                   <SearchDropdown
@@ -189,24 +186,24 @@ export default function Home() {
                   />
                 )}
               </div>
-              <div className="flex justify-center gap-4 mt-4">
+              <div className="flex justify-center gap-2 mt-6">
                 <button
                   onClick={() => setFilter('popular')}
-                  className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${filter === 'popular' ? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+                  className={`px-5 py-2 rounded-full text-sm font-medium transition-colors ${filter === 'popular' ? 'bg-gray-900 text-white' : 'bg-white border border-gray-200 text-gray-600 hover:border-gray-400'}`}
                 >
-                  🔥 Trending
+                  Trending
                 </button>
                 <button
                   onClick={() => setFilter('recent')}
-                  className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${filter === 'recent' ? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+                  className={`px-5 py-2 rounded-full text-sm font-medium transition-colors ${filter === 'recent' ? 'bg-gray-900 text-white' : 'bg-white border border-gray-200 text-gray-600 hover:border-gray-400'}`}
                 >
-                  ✨ New
+                  New
                 </button>
                 <button
                   onClick={() => setFilter('active')}
-                  className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${filter === 'active' ? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+                  className={`px-5 py-2 rounded-full text-sm font-medium transition-colors ${filter === 'active' ? 'bg-gray-900 text-white' : 'bg-white border border-gray-200 text-gray-600 hover:border-gray-400'}`}
                 >
-                  🟢 Live Now
+                  Live Now
                 </button>
               </div>
             </div>
@@ -217,7 +214,7 @@ export default function Home() {
           {/* Featured Polls Grid */}
           <div className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-              <TrendingUp className="w-6 h-6 text-blue-600" />
+              <TrendingUp className="w-6 h-6 text-gray-900" />
               Trending Polls
             </h2>
 
@@ -249,7 +246,7 @@ export default function Home() {
                           </span>
                         </div>
 
-                        <h3 className="text-lg font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors">
+                        <h3 className="text-lg font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-black transition-colors">
                           {poll.question}
                         </h3>
 
@@ -258,7 +255,7 @@ export default function Home() {
                             <Users className="w-4 h-4" />
                             <span>{poll.totalVotes || 0} votes</span>
                           </div>
-                          <ArrowRight className="w-5 h-5 text-gray-300 group-hover:text-blue-600 transform group-hover:translate-x-1 transition-all" />
+                          <ArrowRight className="w-5 h-5 text-gray-300 group-hover:text-black transform group-hover:translate-x-1 transition-all" />
                         </div>
                       </div>
                       <div className="px-6 py-3 bg-gray-50 border-t border-gray-100 flex justify-between items-center">
@@ -266,7 +263,7 @@ export default function Home() {
                           {room?.name || 'Unknown Room'}
                         </span>
                         {room?.creator !== user?.email && !room?.members?.find(m => m.email === user?.email) && (
-                          <span className="text-xs font-bold text-blue-600">Join to Vote</span>
+                          <span className="text-xs font-bold text-gray-900">Join to Vote</span>
                         )}
                       </div>
                     </Link>
@@ -280,7 +277,7 @@ export default function Home() {
           <div>
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-                <Users className="w-6 h-6 text-purple-600" />
+                <Users className="w-6 h-6 text-gray-900" />
                 Popular Communities
               </h2>
             </div>
@@ -297,11 +294,11 @@ export default function Home() {
                   </div>
 
                   <div className="relative z-10">
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 text-blue-600 font-bold text-xl">
+                    <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mb-4 text-gray-900 font-bold text-xl">
                       {room.name.charAt(0)}
                     </div>
 
-                    <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-black transition-colors">
                       {room.name}
                     </h3>
 
@@ -314,7 +311,7 @@ export default function Home() {
                         <Users className="w-4 h-4" />
                         {room.members?.length || 0} Members
                       </span>
-                      <span className="text-blue-600 font-semibold text-sm group-hover:underline">
+                      <span className="text-gray-900 font-semibold text-sm group-hover:underline">
                         View Room
                       </span>
                     </div>

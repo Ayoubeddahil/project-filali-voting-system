@@ -53,9 +53,9 @@ export default function AuthModal({ onClose }) {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
-        <div className="flex justify-between items-center p-6 border-b">
+        <div className="flex justify-between items-center p-6 border-b border-gray-100">
           <h2 className="text-2xl font-bold text-gray-900">
-            {activeTab === 'signin' ? 'Welcome Back' : 'Create Your Account'}
+            {activeTab === 'signin' ? 'Welcome Back' : 'Create Account'}
           </h2>
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
             <X className="w-6 h-6" />
@@ -63,12 +63,12 @@ export default function AuthModal({ onClose }) {
         </div>
 
         {/* Tabs */}
-        <div className="flex border-b">
+        <div className="flex border-b border-gray-100">
           <button
             onClick={() => setActiveTab('signin')}
             className={`flex-1 px-6 py-4 text-center font-medium transition-colors ${activeTab === 'signin'
-              ? 'text-blue-600 border-b-2 border-blue-600'
-              : 'text-gray-600 hover:text-gray-900'
+              ? 'text-gray-900 border-b-2 border-gray-900'
+              : 'text-gray-500 hover:text-gray-700'
               }`}
           >
             Sign In
@@ -76,8 +76,8 @@ export default function AuthModal({ onClose }) {
           <button
             onClick={() => setActiveTab('signup')}
             className={`flex-1 px-6 py-4 text-center font-medium transition-colors ${activeTab === 'signup'
-              ? 'text-blue-600 border-b-2 border-blue-600'
-              : 'text-gray-600 hover:text-gray-900'
+              ? 'text-gray-900 border-b-2 border-gray-900'
+              : 'text-gray-500 hover:text-gray-700'
               }`}
           >
             Sign Up
@@ -89,7 +89,7 @@ export default function AuthModal({ onClose }) {
           <button
             onClick={() => setShowGoogleAccounts(!showGoogleAccounts)}
             disabled={loading}
-            className="w-full flex items-center justify-center gap-3 bg-white border-2 border-gray-300 rounded-lg px-6 py-3 font-medium text-gray-700 hover:bg-gray-50 transition-colors mb-4"
+            className="w-full flex items-center justify-center gap-3 bg-white border-2 border-gray-200 rounded-lg px-6 py-3 font-medium text-gray-700 hover:bg-gray-50 transition-colors mb-4 focus:ring-2 focus:ring-gray-200 focus:outline-none"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24">
               <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -102,7 +102,7 @@ export default function AuthModal({ onClose }) {
           </button>
 
           {showGoogleAccounts && (
-            <div className="mb-4 p-4 bg-gray-50 rounded-lg space-y-2 max-h-64 overflow-y-auto">
+            <div className="mb-4 p-4 bg-gray-50 rounded-lg space-y-2 max-h-64 overflow-y-auto border border-gray-100">
               <p className="text-sm text-gray-600 mb-3 text-center font-medium">Select demo account:</p>
               {googleUsers.map((user) => (
                 <button
@@ -116,7 +116,7 @@ export default function AuthModal({ onClose }) {
                     <p className="font-medium text-gray-900">{user.name}</p>
                     <p className="text-sm text-gray-500">{user.email}</p>
                   </div>
-                  <span className="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded">
+                  <span className="text-xs px-2 py-1 bg-gray-200 text-gray-700 rounded">
                     {user.role}
                   </span>
                 </button>
@@ -126,7 +126,7 @@ export default function AuthModal({ onClose }) {
 
           <div className="relative my-6">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-300"></div>
+              <div className="w-full border-t border-gray-200"></div>
             </div>
             <div className="relative flex justify-center text-sm">
               <span className="px-2 bg-white text-gray-500">or</span>
@@ -145,7 +145,7 @@ export default function AuthModal({ onClose }) {
                 required
                 value={emailForm.email}
                 onChange={(e) => setEmailForm({ ...emailForm, email: e.target.value })}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-shadow"
                 placeholder="your@email.com"
               />
             </div>
@@ -160,7 +160,7 @@ export default function AuthModal({ onClose }) {
                 required
                 value={emailForm.password}
                 onChange={(e) => setEmailForm({ ...emailForm, password: e.target.value })}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-shadow"
                 placeholder="••••••••"
               />
             </div>
@@ -176,7 +176,7 @@ export default function AuthModal({ onClose }) {
                     required
                     value={emailForm.confirmPassword}
                     onChange={(e) => setEmailForm({ ...emailForm, confirmPassword: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-shadow"
                     placeholder="••••••••"
                   />
                 </div>
@@ -187,25 +187,25 @@ export default function AuthModal({ onClose }) {
                     Role
                   </label>
                   <div className="flex gap-4">
-                    <label className="flex items-center">
+                    <label className="flex items-center cursor-pointer">
                       <input
                         type="radio"
                         name="role"
                         value="teacher"
                         checked={emailForm.role === 'teacher'}
                         onChange={(e) => setEmailForm({ ...emailForm, role: e.target.value })}
-                        className="mr-2"
+                        className="mr-2 text-gray-900 focus:ring-gray-900"
                       />
                       Teacher/Admin
                     </label>
-                    <label className="flex items-center">
+                    <label className="flex items-center cursor-pointer">
                       <input
                         type="radio"
                         name="role"
                         value="student"
                         checked={emailForm.role === 'student'}
                         onChange={(e) => setEmailForm({ ...emailForm, role: e.target.value })}
-                        className="mr-2"
+                        className="mr-2 text-gray-900 focus:ring-gray-900"
                       />
                       Student/Voter
                     </label>
@@ -221,13 +221,13 @@ export default function AuthModal({ onClose }) {
                     type="text"
                     value={emailForm.organization}
                     onChange={(e) => setEmailForm({ ...emailForm, organization: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-shadow"
                     placeholder="Your school/company"
                   />
                 </div>
 
                 <label className="flex items-center text-sm text-gray-600">
-                  <input type="checkbox" required className="mr-2" />
+                  <input type="checkbox" required className="mr-2 text-gray-900 focus:ring-gray-900" />
                   I agree to Terms & Privacy Policy
                 </label>
               </>
@@ -236,10 +236,10 @@ export default function AuthModal({ onClose }) {
             {activeTab === 'signin' && (
               <div className="flex items-center justify-between">
                 <label className="flex items-center text-sm text-gray-600">
-                  <input type="checkbox" className="mr-2" />
+                  <input type="checkbox" className="mr-2 text-gray-900 focus:ring-gray-900" />
                   Remember me
                 </label>
-                <a href="#" className="text-sm text-blue-600 hover:text-blue-700">
+                <a href="#" className="text-sm text-gray-900 hover:underline">
                   Forgot Password?
                 </a>
               </div>
@@ -248,7 +248,7 @@ export default function AuthModal({ onClose }) {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+              className="w-full bg-gray-900 text-white px-6 py-3 rounded-lg hover:bg-black transition-colors disabled:opacity-50 flex items-center justify-center gap-2 shadow-lg shadow-gray-200"
             >
               {loading ? (
                 <>
@@ -261,18 +261,18 @@ export default function AuthModal({ onClose }) {
             </button>
           </form>
 
-          <p className="text-center text-sm text-gray-600 mt-4">
+          <p className="text-center text-sm text-gray-600 mt-6">
             {activeTab === 'signin' ? (
               <>
                 Need an account?{' '}
-                <button onClick={() => setActiveTab('signup')} className="text-blue-600 hover:text-blue-700">
+                <button onClick={() => setActiveTab('signup')} className="text-gray-900 font-semibold hover:underline">
                   Sign up
                 </button>
               </>
             ) : (
               <>
                 Already have an account?{' '}
-                <button onClick={() => setActiveTab('signin')} className="text-blue-600 hover:text-blue-700">
+                <button onClick={() => setActiveTab('signin')} className="text-gray-900 font-semibold hover:underline">
                   Sign in
                 </button>
               </>
@@ -283,4 +283,5 @@ export default function AuthModal({ onClose }) {
     </div>
   )
 }
+
 

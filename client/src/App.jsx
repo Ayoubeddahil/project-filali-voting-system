@@ -28,7 +28,8 @@ function App() {
               <Route path="/how-it-works" element={<ProtectedRoute><HowItWorks /></ProtectedRoute>} />
               <Route path="/testimonials" element={<ProtectedRoute><Testimonials /></ProtectedRoute>} />
               <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-              <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+              <Route path="/" element={<Landing />} />
+              <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
               <Route path="/room/:roomId" element={<ProtectedRoute><RoomDetail /></ProtectedRoute>} />
               <Route path="/create-room" element={<ProtectedRoute><CreateRoom /></ProtectedRoute>} />
               <Route path="/admin" element={<ProtectedRoute><AdminPanel /></ProtectedRoute>} />

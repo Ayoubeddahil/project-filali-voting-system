@@ -4,15 +4,6 @@ import { Users, BarChart3, Clock, ChevronRight, Search } from 'lucide-react'
 import { api } from '../utils/api'
 
 export default function SearchDropdown({ query, onSelect }) {
-    // Logic to handle search is done in parent, but this component receives data?
-    // Wait, the previous implementation likely fetched data or filtered data.
-    // In Home.jsx, we see "SearchDropdown query={searchQuery}".
-    // So this component likely does the fetching or the parent passes results?
-    // In Home.jsx line 230: <SearchDropdown query={searchQuery} onSelect={...} />
-    // It only passes query. So the component must fetch.
-
-    // Implemented based on api.js: searchRooms and searchPolls
-
     const [results, setResults] = React.useState({ rooms: [], polls: [] })
     const [loading, setLoading] = React.useState(false)
 
@@ -50,7 +41,7 @@ export default function SearchDropdown({ query, onSelect }) {
         <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-2xl border border-gray-200 z-50 max-h-96 overflow-y-auto">
             {loading ? (
                 <div className="p-4 text-center text-gray-500">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-2"></div>
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto mb-2"></div>
                     Searching...
                 </div>
             ) : results.rooms.length === 0 && results.polls.length === 0 ? (
@@ -70,14 +61,14 @@ export default function SearchDropdown({ query, onSelect }) {
                                     key={room.id}
                                     to={`/room/${room.id}`}
                                     onClick={onSelect}
-                                    className="block px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+                                    className="block px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors group"
                                 >
                                     <div className="flex justify-between items-center">
                                         <div>
-                                            <h4 className="font-medium text-gray-900">{room.name}</h4>
+                                            <h4 className="font-medium text-gray-900 group-hover:text-black">{room.name}</h4>
                                             <p className="text-sm text-gray-500 line-clamp-1">{room.description}</p>
                                         </div>
-                                        <ChevronRight className="w-4 h-4 text-gray-400" />
+                                        <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-gray-600" />
                                     </div>
                                 </Link>
                             ))}
@@ -98,13 +89,13 @@ export default function SearchDropdown({ query, onSelect }) {
                                     key={poll.id}
                                     to={`/room/${poll.roomId}`}
                                     onClick={onSelect}
-                                    className="block px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+                                    className="block px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors group"
                                 >
                                     <div className="flex justify-between items-center">
                                         <div>
-                                            <h4 className="font-medium text-gray-900 line-clamp-1">{poll.question}</h4>
+                                            <h4 className="font-medium text-gray-900 line-clamp-1 group-hover:text-black">{poll.question}</h4>
                                             <div className="flex items-center gap-3 text-xs text-gray-500 mt-0.5">
-                                                <span className={`px-1.5 py-0.5 rounded ${poll.status === 'active' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'
+                                                <span className={`px-1.5 py-0.5 rounded font-medium ${poll.status === 'active' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'
                                                     }`}>
                                                     {poll.status}
                                                 </span>
@@ -114,7 +105,7 @@ export default function SearchDropdown({ query, onSelect }) {
                                                 </span>
                                             </div>
                                         </div>
-                                        <ChevronRight className="w-4 h-4 text-gray-400" />
+                                        <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-gray-600" />
                                     </div>
                                 </Link>
                             ))}

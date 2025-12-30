@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar'
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, PieChart, Pie, Cell, Tooltip, Legend } from 'recharts'
 import { BarChart3, Users, FileText, TrendingUp, Shield } from 'lucide-react'
 
-const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444']
+const COLORS = ['#1a1a1a', '#525252', '#a3a3a3', '#e5e5e5']
 
 export default function AdminPanel() {
   const { user } = useAuth()
@@ -47,7 +47,7 @@ export default function AdminPanel() {
           <Shield className="w-16 h-16 text-red-500 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Access Denied</h2>
           <p className="text-gray-600">You need super admin privileges to access this panel</p>
-          <button onClick={() => window.location.href = '/'} className="mt-4 text-blue-600 hover:underline">
+          <button onClick={() => window.location.href = '/'} className="mt-4 text-gray-900 hover:text-black font-medium hover:underline">
             Return Home
           </button>
         </div>
@@ -58,7 +58,7 @@ export default function AdminPanel() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
       </div>
     )
   }
@@ -69,18 +69,18 @@ export default function AdminPanel() {
   ]
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex h-screen bg-gray-50">
       {/* Sidebar */}
-      <div className="w-64 bg-slate-900 text-white flex flex-col">
+      <div className="w-64 bg-black text-white flex flex-col">
         <div className="p-6">
           <div className="flex items-center gap-2 mb-8">
-            <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center font-bold">V</div>
-            <span className="text-xl font-bold">VoteHub Admin</span>
+            <div className="w-8 h-8 bg-white rounded flex items-center justify-center font-bold text-black">V</div>
+            <span className="text-xl font-bold">InVote Admin</span>
           </div>
           <nav className="space-y-2">
             <button
               onClick={() => setActiveTab('overview')}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${activeTab === 'overview' ? 'bg-blue-600 text-white' : 'text-slate-400 hover:text-white hover:bg-white/10'
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${activeTab === 'overview' ? 'bg-white/10 text-white' : 'text-gray-400 hover:text-white hover:bg-white/5'
                 }`}
             >
               <BarChart3 className="w-5 h-5" />
@@ -88,7 +88,7 @@ export default function AdminPanel() {
             </button>
             <button
               onClick={() => setActiveTab('rooms')}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${activeTab === 'rooms' ? 'bg-blue-600 text-white' : 'text-slate-400 hover:text-white hover:bg-white/10'
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${activeTab === 'rooms' ? 'bg-white/10 text-white' : 'text-gray-400 hover:text-white hover:bg-white/5'
                 }`}
             >
               <FileText className="w-5 h-5" />
@@ -96,27 +96,33 @@ export default function AdminPanel() {
             </button>
             <button
               onClick={() => setActiveTab('users')}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${activeTab === 'users' ? 'bg-blue-600 text-white' : 'text-slate-400 hover:text-white hover:bg-white/10'
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${activeTab === 'users' ? 'bg-white/10 text-white' : 'text-gray-400 hover:text-white hover:bg-white/5'
                 }`}
             >
               <Users className="w-5 h-5" />
               Users Management
             </button>
 
-            <div className="pt-4 mt-4 border-t border-slate-800">
-              <a href="/dashboard" className="w-full flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+            <div className="pt-4 mt-4 border-t border-gray-800">
+              <a href="/dashboard" className="w-full flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
                 <Shield className="w-5 h-5" />
                 Back to Dashboard
               </a>
             </div>
           </nav>
         </div>
-        <div className="mt-auto p-6 border-t border-slate-800">
+        <div className="mt-auto p-6 border-t border-gray-800">
           <div className="flex items-center gap-3">
-            <img src={user.picture} alt="" className="w-10 h-10 rounded-full bg-slate-800" />
+            {user.picture ? (
+              <img src={user.picture} alt="" className="w-10 h-10 rounded-full bg-gray-800" />
+            ) : (
+              <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white font-medium">
+                {user.name?.[0]}
+              </div>
+            )}
             <div>
               <p className="font-medium text-sm">{user.name}</p>
-              <p className="text-xs text-slate-400">Super Admin</p>
+              <p className="text-xs text-gray-400">Super Admin</p>
             </div>
           </div>
         </div>
@@ -133,36 +139,36 @@ export default function AdminPanel() {
             <div className="space-y-8">
               {/* Stats Cards */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+                <div className="bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
                   <div className="flex justify-between items-start">
                     <div>
                       <p className="text-sm font-medium text-gray-500">Total Users</p>
                       <h3 className="text-3xl font-bold text-gray-900 mt-2">{stats?.totalUsers || 0}</h3>
                     </div>
-                    <div className="p-3 bg-blue-50 rounded-lg">
-                      <Users className="w-6 h-6 text-blue-600" />
+                    <div className="p-3 bg-gray-50 rounded-lg">
+                      <Users className="w-6 h-6 text-gray-900" />
                     </div>
                   </div>
                 </div>
-                <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+                <div className="bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
                   <div className="flex justify-between items-start">
                     <div>
                       <p className="text-sm font-medium text-gray-500">Active Rooms</p>
                       <h3 className="text-3xl font-bold text-gray-900 mt-2">{stats?.activeRooms || 0}</h3>
                     </div>
                     <div className="p-3 bg-green-50 rounded-lg">
-                      <TrendingUp className="w-6 h-6 text-green-600" />
+                      <TrendingUp className="w-6 h-6 text-green-700" />
                     </div>
                   </div>
                 </div>
-                <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+                <div className="bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
                   <div className="flex justify-between items-start">
                     <div>
                       <p className="text-sm font-medium text-gray-500">Total Polls</p>
                       <h3 className="text-3xl font-bold text-gray-900 mt-2">{stats?.totalPolls || 0}</h3>
                     </div>
-                    <div className="p-3 bg-purple-50 rounded-lg">
-                      <FileText className="w-6 h-6 text-purple-600" />
+                    <div className="p-3 bg-gray-50 rounded-lg">
+                      <FileText className="w-6 h-6 text-gray-900" />
                     </div>
                   </div>
                 </div>
@@ -170,7 +176,7 @@ export default function AdminPanel() {
 
               {/* Charts */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+                <div className="bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
                   <h3 className="text-lg font-semibold text-gray-900 mb-6">Room Status Distribution</h3>
                   <div className="h-80">
                     <ResponsiveContainer width="100%" height="100%">
@@ -195,7 +201,7 @@ export default function AdminPanel() {
                   </div>
                 </div>
 
-                <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+                <div className="bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
                   <h3 className="text-lg font-semibold text-gray-900 mb-6">Activity Overview</h3>
                   <div className="h-80">
                     <ResponsiveContainer width="100%" height="100%">
@@ -208,7 +214,7 @@ export default function AdminPanel() {
                         <XAxis dataKey="name" />
                         <YAxis />
                         <Tooltip />
-                        <Bar dataKey="value" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+                        <Bar dataKey="value" fill="#1a1a1a" radius={[4, 4, 0, 0]} />
                       </BarChart>
                     </ResponsiveContainer>
                   </div>
@@ -218,21 +224,21 @@ export default function AdminPanel() {
           )}
 
           {activeTab === 'rooms' && (
-            <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200">
                   <thead className="bg-gray-50">
                     <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Room Name</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Code</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Creator</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                      <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                      <th className="px-6 py-3 text-left text-xs font-semibold text-gray-900 uppercase tracking-wider">Room Name</th>
+                      <th className="px-6 py-3 text-left text-xs font-semibold text-gray-900 uppercase tracking-wider">Code</th>
+                      <th className="px-6 py-3 text-left text-xs font-semibold text-gray-900 uppercase tracking-wider">Creator</th>
+                      <th className="px-6 py-3 text-left text-xs font-semibold text-gray-900 uppercase tracking-wider">Status</th>
+                      <th className="px-6 py-3 text-right text-xs font-semibold text-gray-900 uppercase tracking-wider">Actions</th>
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
                     {rooms.map((room) => (
-                      <tr key={room.id} className="hover:bg-gray-50">
+                      <tr key={room.id} className="hover:bg-gray-50 transition-colors">
                         <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">{room.name}</td>
                         <td className="px-6 py-4 whitespace-nowrap font-mono text-sm text-gray-500">{room.code}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{room.creator}</td>
@@ -250,7 +256,7 @@ export default function AdminPanel() {
                                 loadData()
                               }
                             }}
-                            className="text-red-600 hover:text-red-900"
+                            className="text-red-600 hover:text-red-900 font-medium"
                           >
                             Delete
                           </button>
@@ -264,27 +270,27 @@ export default function AdminPanel() {
           )}
 
           {activeTab === 'users' && (
-            <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200">
                   <thead className="bg-gray-50">
                     <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Joined</th>
+                      <th className="px-6 py-3 text-left text-xs font-semibold text-gray-900 uppercase tracking-wider">User</th>
+                      <th className="px-6 py-3 text-left text-xs font-semibold text-gray-900 uppercase tracking-wider">Email</th>
+                      <th className="px-6 py-3 text-left text-xs font-semibold text-gray-900 uppercase tracking-wider">Role</th>
+                      <th className="px-6 py-3 text-left text-xs font-semibold text-gray-900 uppercase tracking-wider">Joined</th>
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
                     {users.map((u) => (
-                      <tr key={u.email} className="hover:bg-gray-50">
+                      <tr key={u.email} className="hover:bg-gray-50 transition-colors">
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center">
-                            <div className="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center mr-3">
+                            <div className="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center mr-3">
                               {u.picture ? (
                                 <img src={u.picture} alt="" className="h-8 w-8 rounded-full" />
                               ) : (
-                                <span className="text-xs font-medium text-gray-500">{u.name?.[0]}</span>
+                                <span className="text-xs font-medium text-gray-900">{u.name?.[0]}</span>
                               )}
                             </div>
                             <div className="text-sm font-medium text-gray-900">{u.name}</div>
@@ -292,8 +298,8 @@ export default function AdminPanel() {
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{u.email}</td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${u.role === 'super_admin' ? 'bg-purple-100 text-purple-800' : 'bg-gray-100 text-gray-800'}`}>
-                            {u.role || 'user'}
+                          <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${u.role === 'super_admin' ? 'bg-black text-white' : 'bg-gray-100 text-gray-800'}`}>
+                            {u.role === 'super_admin' ? 'Super Admin' : 'User'}
                           </span>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -330,7 +336,7 @@ export default function AdminPanel() {
                                     }
                                   }
                                 }}
-                                className="text-blue-600 hover:text-blue-900"
+                                className="text-gray-900 hover:text-black font-medium"
                               >
                                 Promote
                               </button>
@@ -366,4 +372,3 @@ export default function AdminPanel() {
     </div>
   )
 }
-

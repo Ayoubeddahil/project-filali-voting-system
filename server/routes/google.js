@@ -10,10 +10,10 @@ router.post('/sheets/save', (req, res) => {
   try {
     const { room, polls } = req.body;
     const db = readDB();
-    
+
     // Create CSV content
     let csv = 'Room Name,Question,Option,Votes,Percentage,Status,Created\n';
-    
+
     if (polls && polls.length > 0) {
       polls.forEach(poll => {
         const totalVotes = poll.totalVotes || poll.options.reduce((sum, opt) => sum + opt.votes, 0);
@@ -23,17 +23,17 @@ router.post('/sheets/save', (req, res) => {
         });
       });
     }
-    
+
     // Save to exports folder
     const exportsDir = path.join(__dirname, '..', 'exports');
     if (!fs.existsSync(exportsDir)) {
       fs.mkdirSync(exportsDir, { recursive: true });
     }
-    
+
     const filename = `room-${room?.id || 'export'}-${Date.now()}.csv`;
     const filepath = path.join(exportsDir, filename);
     fs.writeFileSync(filepath, csv);
-    
+
     res.json({
       success: true,
       message: 'Results saved successfully',
@@ -49,7 +49,7 @@ router.post('/sheets/save', (req, res) => {
 router.get('/sheets/download/:filename', (req, res) => {
   const exportsDir = path.join(__dirname, '..', 'exports');
   const filepath = path.join(exportsDir, req.params.filename);
-  
+
   if (fs.existsSync(filepath)) {
     res.download(filepath);
   } else {
@@ -62,24 +62,24 @@ router.post('/calendar/share', (req, res) => {
   try {
     const { room, polls } = req.body;
     const activePoll = polls?.find(p => p.status === 'active');
-    
+
     if (!activePoll) {
       return res.json({
         success: false,
         message: 'No active poll to schedule'
       });
     }
-    
+
     // Generate calendar event data (ICS format)
     const eventData = {
       title: `Vote: ${activePoll.question}`,
       description: `Room: ${room?.name}\nQuestion: ${activePoll.question}`,
       start: activePoll.endsAt || new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
       end: new Date(new Date(activePoll.endsAt || Date.now() + 24 * 60 * 60 * 1000).getTime() + 60 * 60 * 1000).toISOString(),
-      location: `Antigravitie Room: ${room?.code || 'N/A'}`,
+      location: `InVote Room: ${room?.code || 'N/A'}`,
       calendarUrl: `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(activePoll.question)}&dates=${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z/${new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().replace(/[-:]/g, '').split('.')[0]}Z`
     };
-    
+
     res.json({
       success: true,
       message: 'Calendar event created',
@@ -96,12 +96,12 @@ router.post('/drive/export', (req, res) => {
   try {
     const { room, polls } = req.body;
     const db = readDB();
-    
+
     // Get all votes for polls in this room
     const roomPolls = polls || [];
     const pollIds = roomPolls.map(p => p.id);
     const roomVotes = db.votes.filter(v => pollIds.includes(v.pollId));
-    
+
     // Create export data
     const exportData = {
       room: {
@@ -123,17 +123,17 @@ router.post('/drive/export', (req, res) => {
       votes: roomVotes,
       exportedAt: new Date().toISOString()
     };
-    
+
     // Save to exports folder
     const exportsDir = path.join(__dirname, '..', 'exports');
     if (!fs.existsSync(exportsDir)) {
       fs.mkdirSync(exportsDir, { recursive: true });
     }
-    
+
     const filename = `room-${room?.id || 'export'}-${Date.now()}.json`;
     const filepath = path.join(exportsDir, filename);
     fs.writeFileSync(filepath, JSON.stringify(exportData, null, 2));
-    
+
     res.json({
       success: true,
       message: 'Data exported successfully',
@@ -150,7 +150,7 @@ router.post('/drive/export', (req, res) => {
 router.get('/drive/download/:filename', (req, res) => {
   const exportsDir = path.join(__dirname, '..', 'exports');
   const filepath = path.join(exportsDir, req.params.filename);
-  
+
   if (fs.existsSync(filepath)) {
     res.download(filepath);
   } else {
@@ -163,11 +163,11 @@ router.get('/contacts', (req, res) => {
   try {
     const db = readDB();
     const token = req.headers.authorization?.replace('Bearer ', '');
-    
+
     if (!token) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
-    
+
     // Decode token to get user email (simplified)
     const jwt = require('jsonwebtoken');
     let userEmail;
@@ -177,12 +177,12 @@ router.get('/contacts', (req, res) => {
     } catch (e) {
       return res.status(401).json({ error: 'Invalid token' });
     }
-    
+
     // Get all members from user's rooms
-    const userRooms = db.rooms.filter(r => 
+    const userRooms = db.rooms.filter(r =>
       r.members.some(m => m.email === userEmail) || r.creator === userEmail
     );
-    
+
     const contactsMap = new Map();
     userRooms.forEach(room => {
       room.members.forEach(member => {
@@ -200,9 +200,9 @@ router.get('/contacts', (req, res) => {
         }
       });
     });
-    
+
     const contacts = Array.from(contactsMap.values());
-    
+
     res.json({
       contacts: contacts,
       total: contacts.length
