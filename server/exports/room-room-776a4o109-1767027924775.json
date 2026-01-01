@@ -138,7 +138,7 @@
     {
       "pollId": "poll-689rxjruh",
       "optionId": "opt2",
-      "userEmail": "demo@votehub.com",
+      "userEmail": "demo@invote.com",
       "timestamp": "2025-12-29T05:37:46.812Z"
     },
     {
@@ -312,7 +312,7 @@
     {
       "pollId": "poll-689rxjruh",
       "optionId": "opt1",
-      "userEmail": "demo@votehub.com",
+      "userEmail": "demo@invote.com",
       "timestamp": "2025-12-29T05:17:57.837Z"
     },
     {
@@ -576,7 +576,7 @@
     {
       "pollId": "poll-eeaf15hjw",
       "optionId": "opt2",
-      "userEmail": "admin@votehub.com",
+      "userEmail": "admin@invote.com",
       "timestamp": "2025-12-29T05:14:29.674Z"
     },
     {
@@ -882,7 +882,7 @@
     {
       "pollId": "poll-m5yh5g3jm",
       "optionId": "opt1",
-      "userEmail": "demo@votehub.com",
+      "userEmail": "demo@invote.com",
       "timestamp": "2025-12-28T23:00:32.668Z"
     },
     {
@@ -1087,7 +1087,7 @@
       "id": "vote-1767027909104-0tgpttq5e",
       "pollId": "poll-689rxjruh",
       "optionId": "opt2",
-      "userEmail": "admin@antigravitie.com",
+      "userEmail": "admin@gmail.com",
       "votedAt": "2025-12-29T17:05:09.104Z"
     }
   ],

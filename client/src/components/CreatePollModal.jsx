@@ -49,7 +49,7 @@ export default function CreatePollModal({ roomId, onClose, onCreated }) {
       })
 
       if (socket) {
-        socket.emit('poll-update', { roomId, pollId: response.data.poll.id })
+        socket.emit('create_poll', { roomId, poll: response.data.poll })
       }
 
       onCreated()

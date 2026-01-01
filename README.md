@@ -106,11 +106,11 @@ Then open [http://localhost:5173](http://localhost:5173) in your browser.
 
 The platform comes with pre-loaded demo Google accounts:
 
-1. **admin@antigravitie.com** - Super Admin (full access)
-2. **teacher@antigravitie.com** - Teacher (can create rooms)
-3. **student1@antigravitie.com** - Student (can vote)
-4. **student2@antigravitie.com** - Student (can vote)
-5. **manager@antigravitie.com** - Manager (can create rooms)
+1. **admin@gmail.com** - Super Admin (full access)
+2. **teacher@gmail.com** - Teacher (can create rooms)
+3. **student1@gmail.com** - Student (can vote)
+4. **student2@gmail.com** - Student (can vote)
+5. **manager@gmail.com** - Manager (can create rooms)
 
 ## 📖 Usage Guide
 
@@ -143,7 +143,7 @@ The platform comes with pre-loaded demo Google accounts:
 - See real-time results with charts
 
 ### 6. Admin Panel
-- Login as `admin@antigravitie.com`
+- Login as `admin@gmail.com`
 - Access "Admin Panel" from the navbar
 - View platform statistics and all rooms
 
@@ -189,7 +189,7 @@ invote-voting-platform/
 ## 🎭 Demo Scenarios
 
 ### Scenario 1: Classroom Voting
-1. Login as `teacher@antigravitie.com`
+1. Login as `teacher@gmail.com`
 2. Create "Math Class" room
 3. Share room code with students
 4. Students join using code
@@ -198,14 +198,14 @@ invote-voting-platform/
 7. View results with charts
 
 ### Scenario 2: Team Meeting
-1. Login as `manager@antigravitie.com`
+1. Login as `manager@gmail.com`
 2. Create "Q2 Planning" room
 3. Create multiple polls for agenda items
 4. Team members vote
 5. View live results dashboard
 
 ### Scenario 3: Super Admin
-1. Login as `admin@antigravitie.com`
+1. Login as `admin@gmail.com`
 2. Access Admin Panel
 3. View all rooms and statistics
 4. Monitor platform activity

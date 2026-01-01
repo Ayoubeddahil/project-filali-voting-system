@@ -225,11 +225,11 @@
 
 ## 🎭 Demo Features
 - ✅ **5 Pre-loaded Accounts:**
-  - admin@antigravitie.com (Super Admin)
-  - teacher@antigravitie.com (Teacher)
-  - student1@antigravitie.com (Student)
-  - student2@antigravitie.com (Student)
-  - manager@antigravitie.com (Manager)
+  - admin@gmail.com (Super Admin)
+  - teacher@gmail.com (Teacher)
+  - student1@gmail.com (Student)
+  - student2@gmail.com (Student)
+  - manager@gmail.com (Manager)
 - ✅ **Fake Data Generation** - Stats and activity
 - ✅ **Simulated Delays** - Realistic API response times
 - ✅ **Error Simulation** - Can show error states

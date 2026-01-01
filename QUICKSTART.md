@@ -23,10 +23,10 @@ Then open: **http://localhost:5173**
 ### 1. Login
 - Click "Sign in with Google"
 - Select any demo account:
-  - `admin@antigravitie.com` (Super Admin)
-  - `teacher@antigravitie.com` (Teacher)
-  - `student1@antigravitie.com` (Student)
-  - `student2@antigravitie.com` (Student)
+  - `admin@gmail.com` (Super Admin)
+  - `teacher@gmail.com` (Teacher)
+  - `student1@gmail.com` (Student)
+  - `student2@gmail.com` (Student)
 
 ### 2. Create a Room
 - Click "Create Room"
@@ -50,7 +50,7 @@ Then open: **http://localhost:5173**
 - See real-time results with charts
 
 ### 6. Admin Panel
-- Login as `admin@antigravitie.com`
+- Login as `admin@gmail.com`
 - Click "Admin Panel" in navbar
 - View platform statistics
 

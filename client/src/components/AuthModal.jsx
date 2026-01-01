@@ -46,7 +46,7 @@ export default function AuthModal({ onClose }) {
     // Simulate email/password auth (fake)
     setTimeout(() => {
       // For demo, just use first Google user
-      handleGoogleLogin(googleUsers[0]?.email || 'admin@antigravitie.com')
+      handleGoogleLogin(googleUsers[0]?.email || 'admin@gmail.com')
     }, 1000)
   }
 

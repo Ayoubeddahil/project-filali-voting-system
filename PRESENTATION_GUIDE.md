@@ -23,7 +23,7 @@
 - Sign Up modal opens
 - Click "Sign up with Google"
 - Demo account selection appears
-- Select `admin@antigravitie.com`
+- Select `admin@gmail.com`
 - Redirects to dashboard
 
 **Highlight:**
@@ -139,7 +139,7 @@
 **Say:** "For super admins, there's a complete platform management panel."
 
 **Show:**
-- Login as `admin@antigravitie.com`
+- Login as `admin@gmail.com`
 - Navigate to Admin Panel
 - Show:
   - Platform statistics
@@ -174,7 +174,7 @@
 
 1. **Multi-User Demo:**
    - Open in incognito window
-   - Login as `student1@antigravitie.com`
+   - Login as `student1@gmail.com`
    - Join room via code
    - Vote on poll
    - Show real-time updates

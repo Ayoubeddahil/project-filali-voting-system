@@ -10,10 +10,14 @@ export default function CreateRoom() {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
 
-  // Redirect if not authenticated
+  // Redirect if not authenticated or not authorized
   useEffect(() => {
-    if (!authLoading && !user) {
-      navigate('/login')
+    if (!authLoading) {
+      if (!user) {
+        navigate('/login')
+      } else if (user.role === 'student') {
+        navigate('/dashboard')
+      }
     }
   }, [user, authLoading, navigate])
   const [formData, setFormData] = useState({

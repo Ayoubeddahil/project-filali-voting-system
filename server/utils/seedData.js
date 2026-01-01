@@ -9,7 +9,7 @@ function seedDatabase() {
   const demoUsers = [
     {
       id: "google-005",
-      email: "professor@antigravitie.com",
+      email: "professor@gmail.com",
       name: "Prof. Michael Chen",
       picture: "https://ui-avatars.com/api/?name=Michael+Chen&background=8b5cf6&color=fff&size=128",
       role: "teacher",
@@ -18,7 +18,7 @@ function seedDatabase() {
     },
     {
       id: "google-006",
-      email: "student3@antigravitie.com",
+      email: "student3@gmail.com",
       name: "Emma Wilson",
       picture: "https://ui-avatars.com/api/?name=Emma+Wilson&background=f59e0b&color=fff&size=128",
       role: "student",
@@ -27,7 +27,7 @@ function seedDatabase() {
     },
     {
       id: "google-007",
-      email: "student4@antigravitie.com",
+      email: "student4@gmail.com",
       name: "Ryan Martinez",
       picture: "https://ui-avatars.com/api/?name=Ryan+Martinez&background=10b981&color=fff&size=128",
       role: "student",
@@ -36,7 +36,7 @@ function seedDatabase() {
     },
     {
       id: "google-008",
-      email: "teamlead@antigravitie.com",
+      email: "teamlead@gmail.com",
       name: "Lisa Anderson",
       picture: "https://ui-avatars.com/api/?name=Lisa+Anderson&background=ef4444&color=fff&size=128",
       role: "manager",
@@ -62,11 +62,11 @@ function seedDatabase() {
       description: "Calculus and advanced algebra discussions",
       topics: ["calculus", "algebra", "geometry"],
       isPrivate: false,
-      creator: "professor@antigravitie.com",
+      creator: "professor@gmail.com",
       members: [
-        { email: "professor@antigravitie.com", role: "admin", joinedAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString() },
-        { email: "student3@antigravitie.com", role: "member", joinedAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000).toISOString() },
-        { email: "student4@antigravitie.com", role: "member", joinedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString() }
+        { email: "professor@gmail.com", role: "admin", joinedAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString() },
+        { email: "student3@gmail.com", role: "member", joinedAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000).toISOString() },
+        { email: "student4@gmail.com", role: "member", joinedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString() }
       ],
       createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
       status: "active"
@@ -78,12 +78,12 @@ function seedDatabase() {
       description: "Weekly sprint planning and retrospectives",
       topics: ["agile", "sprint", "planning"],
       isPrivate: false,
-      creator: "teamlead@antigravitie.com",
+      creator: "teamlead@gmail.com",
       members: [
-        { email: "teamlead@antigravitie.com", role: "admin", joinedAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString() },
-        { email: "professor@antigravitie.com", role: "member", joinedAt: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000).toISOString() },
-        { email: "student3@antigravitie.com", role: "member", joinedAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString() },
-        { email: "student4@antigravitie.com", role: "member", joinedAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000).toISOString() }
+        { email: "teamlead@gmail.com", role: "admin", joinedAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString() },
+        { email: "professor@gmail.com", role: "member", joinedAt: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000).toISOString() },
+        { email: "student3@gmail.com", role: "member", joinedAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString() },
+        { email: "student4@gmail.com", role: "member", joinedAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000).toISOString() }
       ],
       createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
       status: "active"
@@ -95,12 +95,12 @@ function seedDatabase() {
       description: "Physics and chemistry lab results",
       topics: ["physics", "chemistry", "lab"],
       isPrivate: false,
-      creator: "professor@antigravitie.com",
+      creator: "professor@gmail.com",
       members: [
-        { email: "professor@antigravitie.com", role: "admin", joinedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString() },
-        { email: "student3@antigravitie.com", role: "member", joinedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString() },
-        { email: "student4@antigravitie.com", role: "member", joinedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString() },
-        { email: "student1@antigravitie.com", role: "member", joinedAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString() }
+        { email: "professor@gmail.com", role: "admin", joinedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString() },
+        { email: "student3@gmail.com", role: "member", joinedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString() },
+        { email: "student4@gmail.com", role: "member", joinedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString() },
+        { email: "student1@gmail.com", role: "member", joinedAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString() }
       ],
       createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
       status: "active"
@@ -132,7 +132,7 @@ function seedDatabase() {
         createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
         endsAt: null,
         status: "active",
-        creator: "professor@antigravitie.com",
+        creator: "professor@gmail.com",
         totalVotes: 35
       });
       demoPolls.push({
@@ -149,7 +149,7 @@ function seedDatabase() {
         createdAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000).toISOString(),
         endsAt: null,
         status: "closed",
-        creator: "professor@antigravitie.com",
+        creator: "professor@gmail.com",
         totalVotes: 35
       });
     } else if (room.name === "Team Sprint Planning") {
@@ -166,7 +166,7 @@ function seedDatabase() {
         createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
         endsAt: null,
         status: "active",
-        creator: "teamlead@antigravitie.com",
+        creator: "teamlead@gmail.com",
         totalVotes: 35
       });
       demoPolls.push({
@@ -182,7 +182,7 @@ function seedDatabase() {
         createdAt: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000).toISOString(),
         endsAt: null,
         status: "closed",
-        creator: "teamlead@antigravitie.com",
+        creator: "teamlead@gmail.com",
         totalVotes: 35
       });
     } else if (room.name === "Science Lab Discussions") {
@@ -199,7 +199,7 @@ function seedDatabase() {
         createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
         endsAt: null,
         status: "active",
-        creator: "professor@antigravitie.com",
+        creator: "professor@gmail.com",
         totalVotes: 40
       });
     }

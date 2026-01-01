@@ -176,13 +176,15 @@ export default function Dashboard() {
                 <LogIn className="w-4 h-4" />
                 Join Room
               </button>
-              <Link
-                to="/create-room"
-                className="flex-1 md:flex-none flex items-center justify-center gap-2 bg-gray-900 text-white px-6 py-3 rounded-full hover:bg-black transition-colors font-medium shadow-lg shadow-gray-200"
-              >
-                <PlusCircle className="w-4 h-4" />
-                Create Room
-              </Link>
+              {(user?.role === 'super_admin' || user?.role === 'teacher' || user?.role === 'manager') && (
+                <Link
+                  to="/create-room"
+                  className="flex-1 md:flex-none flex items-center justify-center gap-2 bg-gray-900 text-white px-6 py-3 rounded-full hover:bg-black transition-colors font-medium shadow-lg shadow-gray-200"
+                >
+                  <PlusCircle className="w-4 h-4" />
+                  Create Room
+                </Link>
+              )}
             </div>
           </div>
 
@@ -193,13 +195,15 @@ export default function Dashboard() {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">No rooms yet</h3>
               <p className="text-gray-500 mb-8 max-w-sm mx-auto">Create your first room to start hosting polls and gathering feedback.</p>
-              <Link
-                to="/create-room"
-                className="inline-flex items-center gap-2 bg-gray-900 text-white px-6 py-3 rounded-full hover:bg-black transition-colors font-medium"
-              >
-                <PlusCircle className="w-4 h-4" />
-                Create Room
-              </Link>
+              {(user?.role === 'super_admin' || user?.role === 'teacher' || user?.role === 'manager') && (
+                <Link
+                  to="/create-room"
+                  className="inline-flex items-center gap-2 bg-gray-900 text-white px-6 py-3 rounded-full hover:bg-black transition-colors font-medium"
+                >
+                  <PlusCircle className="w-4 h-4" />
+                  Create Room
+                </Link>
+              )}
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">

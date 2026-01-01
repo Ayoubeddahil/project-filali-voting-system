@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { useSocket } from '../contexts/SocketContext'
@@ -8,7 +8,7 @@ import PollCard from '../components/PollCard'
 import CreatePollModal from '../components/CreatePollModal'
 import RoomTabs from '../components/RoomTabs'
 import GoogleIntegrations from '../components/GoogleIntegrations'
-import { PlusCircle, Copy, Check, ArrowLeft, Users, Settings, Trash2, Home } from 'lucide-react'
+import { PlusCircle, Copy, Check, ArrowLeft, Users, Settings, Trash2, Home, X } from 'lucide-react'
 
 export default function RoomDetail() {
   const { roomId } = useParams()
@@ -21,19 +21,70 @@ export default function RoomDetail() {
   const [showCreatePoll, setShowCreatePoll] = useState(false)
   const [copiedCode, setCopiedCode] = useState(false)
 
+  // Toast Notification State
+  const [toast, setToast] = useState(null)
+
+
+
   useEffect(() => {
     loadRoom()
     if (socket) {
-      socket.emit('join-room', roomId)
-      socket.on('poll-updated', handlePollUpdate)
-      socket.on('vote-received', handleVoteReceived)
+      socket.emit('join_room', { roomId, user })
+      // socket.on('poll_updated', handlePollUpdate) -> Moved to separate effect with notification logic
+      socket.on('poll_created', handlePollUpdate) // Re-use update handler (reloads room)
+
+      // Removed duplicate/incorrect 'vote-received' listener as 'poll_updated' should cover it
+      // or if we want to be specific we can keep it but mapped to 'poll_updated' logic
 
       return () => {
-        socket.off('poll-updated')
-        socket.off('vote-received')
+        // socket.off('poll_updated') -> Handled in separate effect
+        socket.off('poll_created')
       }
     }
   }, [roomId, socket])
+
+  // Refs to access latest state inside socket listener without re-binding
+  const roomRef = useRef(room)
+  const userRef = useRef(user)
+
+  // Update refs when state changes
+  useEffect(() => {
+    roomRef.current = room
+  }, [room])
+
+  useEffect(() => {
+    userRef.current = user
+  }, [user])
+
+  useEffect(() => {
+    if (socket) {
+      const onPollUpdate = (data) => {
+        const currentRoom = roomRef.current
+        const currentUser = userRef.current
+
+        // Admin check using fresh ref data
+        const isCreator = currentRoom?.creator === currentUser?.email
+        const isAdminMember = currentRoom?.members?.find(m => m.email === currentUser?.email)?.role === 'admin'
+        const isUserAdmin = isCreator || isAdminMember
+
+        const voterName = data.voterName || 'Someone'
+        const isNotSelf = voterName !== currentUser?.name
+
+        if (isUserAdmin && isNotSelf && data.voterName) { // Only notify if we actually have a voter name (implies it's a vote event)
+          showToast(`🗳️ ${voterName} voted on a poll!`)
+        }
+
+        // Always reload data
+        handlePollUpdate(data)
+      }
+
+      socket.on('poll_updated', onPollUpdate)
+
+      return () => {
+        socket.off('poll_updated', onPollUpdate)
+      }
+    }
+  }, [roomId, socket]) // Dependencies reduced to stable items
 
   const loadRoom = async () => {
     try {
@@ -104,9 +155,38 @@ export default function RoomDetail() {
     )
   }
 
+
+
+  // ... (previous effects)
+
+
+
+  const showToast = (message) => {
+    setToast(message)
+    setTimeout(() => setToast(null), 3000)
+  }
+
   return (
     <>
       <Navbar />
+
+      {/* Toast Notification */}
+      {toast && (
+        <div className="fixed top-24 right-4 z-[100] animate-bounce-in">
+          <div className="bg-gray-900 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-3 border border-gray-800">
+            <div className="bg-green-500 rounded-full p-1">
+              <Check className="w-3 h-3 text-white" />
+            </div>
+            <div>
+              <p className="font-medium text-sm">{toast}</p>
+            </div>
+            <button onClick={() => setToast(null)} className="ml-2 text-gray-400 hover:text-white">
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className="min-h-screen bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <button

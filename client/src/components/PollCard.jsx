@@ -16,31 +16,42 @@ export default function PollCard({ poll, roomId, isAdmin, onUpdate }) {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    // Only update if the poll object actually changed or provides fresh vote info
     setPollData(poll)
-    checkVoteStatus()
+    updateLocalVoteStatus(poll)
   }, [poll])
 
   useEffect(() => {
     if (socket) {
-      socket.on('vote-received', (data) => {
+      const onPollUpdate = (data) => {
+        // Only load if it's NOT our own vote (to prevent race conditions)
+        // or if it's a generic poll update
         if (data.pollId === poll.id) {
-          loadPoll()
+          if (data.voterName !== user?.name) {
+            loadPoll()
+          }
         }
-      })
-      return () => socket.off('vote-received')
+      }
+      socket.on('poll_updated', onPollUpdate)
+      return () => socket.off('poll_updated', onPollUpdate)
     }
-  }, [socket, poll.id])
+  }, [socket, poll.id, user?.name])
 
-  const checkVoteStatus = async () => {
-    // In real app, check if user has voted
-    // For demo, we'll simulate this
-    setHasVoted(false)
+  const updateLocalVoteStatus = (data) => {
+    if (data.hasVoted) {
+      setHasVoted(true)
+      setSelectedOption(data.userVote)
+    } else {
+      setHasVoted(false)
+      setSelectedOption(null)
+    }
   }
 
   const loadPoll = async () => {
     try {
       const response = await api.getPoll(poll.id)
       setPollData(response.data.poll)
+      updateLocalVoteStatus(response.data.poll)
     } catch (error) {
       console.error('Failed to load poll:', error)
     }
@@ -56,7 +67,12 @@ export default function PollCard({ poll, roomId, isAdmin, onUpdate }) {
       setHasVoted(true)
 
       if (socket) {
-        socket.emit('new-vote', { roomId, pollId: poll.id, optionId })
+        socket.emit('vote_update', {
+          roomId,
+          pollId: poll.id,
+          optionId,
+          voterName: user.name // Pass voter name for notifications
+        })
       }
 
       loadPoll()
@@ -73,7 +89,8 @@ export default function PollCard({ poll, roomId, isAdmin, onUpdate }) {
     try {
       await api.closePoll(poll.id)
       if (socket) {
-        socket.emit('poll-update', { roomId, pollId: poll.id })
+        // Use vote_update as a generic "something changed" trigger for now
+        socket.emit('vote_update', { roomId, pollId: poll.id })
       }
       onUpdate()
     } catch (error) {
@@ -88,7 +105,9 @@ export default function PollCard({ poll, roomId, isAdmin, onUpdate }) {
   }))
 
   const isActive = pollData.status === 'active'
-  const totalVotes = pollData.totalVotes || pollData.options.reduce((sum, opt) => sum + opt.votes, 0)
+  // Calculate total votes from options to be safe/robust
+  const calculatedTotal = pollData.options.reduce((sum, opt) => sum + opt.votes, 0)
+  const displayTotal = calculatedTotal || pollData.totalVotes || 0
 
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
@@ -100,7 +119,7 @@ export default function PollCard({ poll, roomId, isAdmin, onUpdate }) {
               }`}>
               {isActive ? 'Active' : 'Closed'}
             </span>
-            <span>{totalVotes} votes</span>
+            <span>{displayTotal} people voted</span>
             {pollData.endsAt && (
               <span className="flex items-center gap-1">
                 <Clock className="w-4 h-4" />
@@ -141,7 +160,7 @@ export default function PollCard({ poll, roomId, isAdmin, onUpdate }) {
           {/* Results */}
           <div className="mb-6 space-y-4">
             {pollData.options.map((option, idx) => {
-              const percentage = totalVotes > 0 ? (option.votes / totalVotes) * 100 : 0
+              const percentage = displayTotal > 0 ? (option.votes / displayTotal) * 100 : 0
               return (
                 <div key={option.id} className="relative">
                   <div className="flex justify-between items-center mb-1 relative z-10">
@@ -166,7 +185,7 @@ export default function PollCard({ poll, roomId, isAdmin, onUpdate }) {
           </div>
 
           {/* Charts */}
-          {totalVotes > 0 && (
+          {displayTotal > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-gray-100">
               <div>
                 <h4 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4">Distribution</h4>

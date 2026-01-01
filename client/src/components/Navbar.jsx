@@ -46,7 +46,7 @@ export default function Navbar() {
           <div className="flex items-center gap-4">
             {user ? (
               <div className="flex items-center gap-4">
-                {user.role !== 'super_admin' && (
+                {user.role !== 'student' && (
                   <Link
                     to="/create-room"
                     className="hidden md:flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-full hover:bg-black transition-colors text-sm font-medium"

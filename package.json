@@ -1,5 +1,5 @@
 {
-  "name": "votehub-voting-platform",
+  "name": "invote-voting-platform",
   "version": "1.0.0",
   "description": "Fake complete voting platform with Google OAuth simulation",
   "scripts": {

@@ -35,7 +35,7 @@ export default function HowItWorks() {
             <div className="min-h-screen bg-white py-12">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
-                        <h1 className="text-4xl font-bold text-gray-900 mb-4">How VoteHub Works</h1>
+                        <h1 className="text-4xl font-bold text-gray-900 mb-4">How invote Works</h1>
                         <p className="text-xl text-gray-600">From question to decision in five simple steps.</p>
                     </div>
 

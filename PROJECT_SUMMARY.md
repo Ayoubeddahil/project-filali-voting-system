@@ -128,11 +128,11 @@ invote-voting-platform/
 
 ## 🎭 Demo Accounts
 
-1. **admin@antigravitie.com** - Super Admin
-2. **teacher@antigravitie.com** - Teacher/Room Creator
-3. **student1@antigravitie.com** - Student/Voter
-4. **student2@antigravitie.com** - Student/Voter
-5. **manager@antigravitie.com** - Manager/Room Creator
+1. **admin@gmail.com** - Super Admin
+2. **teacher@gmail.com** - Teacher/Room Creator
+3. **student1@gmail.com** - Student/Voter
+4. **student2@gmail.com** - Student/Voter
+5. **manager@gmail.com** - Manager/Room Creator
 
 ## 🚀 How to Run
 

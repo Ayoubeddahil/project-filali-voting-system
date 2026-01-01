@@ -21,7 +21,7 @@ const seedDatabase = () => {
 
     // Create known users
     const adminUser = {
-        email: 'admin@votehub.com',
+        email: 'admin@invote.com',
         name: 'Admin User',
         picture: 'https://ui-avatars.com/api/?name=Admin+User&background=random',
         role: 'super_admin'
@@ -29,7 +29,7 @@ const seedDatabase = () => {
     users.push(adminUser);
 
     const demoUser = {
-        email: 'demo@votehub.com',
+        email: 'demo@invote.com',
         name: 'Demo User',
         picture: 'https://ui-avatars.com/api/?name=Demo+User&background=random',
         role: 'user'
@@ -51,7 +51,7 @@ const seedDatabase = () => {
         id: generateId('room-'),
         code: 'TEST01',
         name: 'Official Demo Room',
-        description: 'A room to demonstrate the features of VoteHub.',
+        description: 'A room to demonstrate the features of invote.',
         topics: ['demo', 'presentation', 'official'],
         isPrivate: false,
         creator: adminUser.email,

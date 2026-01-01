@@ -6,7 +6,7 @@ const router = express.Router();
 // Middleware to verify token (simplified)
 function verifyToken(req, res, next) {
   const token = req.headers.authorization?.replace('Bearer ', '');
-  if (!token) {
+  if (!token || token === 'null' || token === 'undefined') {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
@@ -14,10 +14,10 @@ function verifyToken(req, res, next) {
   try {
     const jwt = require('jsonwebtoken');
     const decoded = jwt.verify(token, 'fake-jwt-secret-for-demo-only');
-    req.user = { email: decoded.email || req.body.userEmail || 'admin@antigravitie.com' };
+    req.user = { email: decoded.email || req.body.userEmail || 'admin@gmail.com' };
   } catch (error) {
     // If token invalid, use body or default
-    req.user = { email: req.body.userEmail || 'admin@antigravitie.com' };
+    req.user = { email: req.body.userEmail || 'admin@gmail.com' };
   }
   next();
 }
@@ -199,14 +199,53 @@ router.delete('/:roomId/members/:memberEmail', verifyToken, (req, res) => {
 });
 
 // Search rooms (all public rooms + user's rooms)
-router.get('/search/:query', verifyToken, (req, res) => {
+router.get('/search/', (req, res) => {
+  const token = req.headers.authorization?.replace('Bearer ', '');
+  let userEmail = null;
+
+  if (token) {
+    try {
+      const jwt = require('jsonwebtoken');
+      const decoded = jwt.verify(token, 'fake-jwt-secret-for-demo-only');
+      userEmail = decoded.email;
+    } catch (e) { }
+  }
+
+  const db = readDB();
+
+  // Get user's rooms if logged in
+  const userRooms = userEmail ? db.rooms.filter(r =>
+    r.members.some(m => m.email === userEmail) || r.creator === userEmail
+  ) : [];
+
+  // Get public rooms (not private)
+  const publicRooms = db.rooms.filter(r => !r.isPrivate);
+
+  // Combine and deduplicate
+  const allRooms = [...new Map([...userRooms, ...publicRooms].map(r => [r.id, r])).values()];
+
+  res.json({ rooms: allRooms });
+});
+
+router.get('/search/:query', (req, res) => {
+  const token = req.headers.authorization?.replace('Bearer ', '');
+  let userEmail = null;
+
+  if (token) {
+    try {
+      const jwt = require('jsonwebtoken');
+      const decoded = jwt.verify(token, 'fake-jwt-secret-for-demo-only');
+      userEmail = decoded.email;
+    } catch (e) { }
+  }
+
   const db = readDB();
   const query = req.params.query.toLowerCase();
 
   // Get user's rooms
-  const userRooms = db.rooms.filter(r =>
-    r.members.some(m => m.email === req.user.email) || r.creator === req.user.email
-  );
+  const userRooms = userEmail ? db.rooms.filter(r =>
+    r.members.some(m => m.email === userEmail) || r.creator === userEmail
+  ) : [];
 
   // Get public rooms (not private)
   const publicRooms = db.rooms.filter(r => !r.isPrivate);

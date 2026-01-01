@@ -12,9 +12,9 @@ function verifyToken(req, res, next) {
   try {
     const jwt = require('jsonwebtoken');
     const decoded = jwt.verify(token, 'fake-jwt-secret-for-demo-only');
-    req.user = { email: decoded.email || req.body.userEmail || 'admin@antigravitie.com' };
+    req.user = { email: decoded.email || req.body.userEmail || 'admin@gmail.com' };
   } catch (error) {
-    req.user = { email: req.body.userEmail || 'admin@antigravitie.com' };
+    req.user = { email: req.body.userEmail || 'admin@gmail.com' };
   }
   next();
 }

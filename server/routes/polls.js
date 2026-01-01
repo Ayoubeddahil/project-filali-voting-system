@@ -5,16 +5,16 @@ const router = express.Router();
 
 function verifyToken(req, res, next) {
   const token = req.headers.authorization?.replace('Bearer ', '');
-  if (!token) {
+  if (!token || token === 'null' || token === 'undefined') {
     return res.status(401).json({ error: 'Unauthorized' });
   }
-  
+
   try {
     const jwt = require('jsonwebtoken');
     const decoded = jwt.verify(token, 'fake-jwt-secret-for-demo-only');
-    req.user = { email: decoded.email || req.body.userEmail || 'admin@antigravitie.com' };
+    req.user = { email: decoded.email || req.body.userEmail || 'admin@gmail.com' };
   } catch (error) {
-    req.user = { email: req.body.userEmail || 'admin@antigravitie.com' };
+    req.user = { email: req.body.userEmail || 'admin@gmail.com' };
   }
   next();
 }
@@ -23,7 +23,7 @@ function verifyToken(req, res, next) {
 router.post('/create', verifyToken, (req, res) => {
   const { roomId, question, options, duration } = req.body;
   const db = readDB();
-  
+
   const room = db.rooms.find(r => r.id === roomId);
   if (!room) {
     return res.status(404).json({ error: 'Room not found' });
@@ -64,35 +64,42 @@ router.post('/create', verifyToken, (req, res) => {
 router.get('/:pollId', verifyToken, (req, res) => {
   const db = readDB();
   const poll = db.polls.find(p => p.id === req.params.pollId);
-  
+
   if (!poll) {
     return res.status(404).json({ error: 'Poll not found' });
   }
 
   // Get votes for this poll
   const pollVotes = db.votes.filter(v => v.pollId === poll.id);
-  
-  res.json({ poll, votes: pollVotes });
+  const userVote = pollVotes.find(v => v.userEmail === req.user.email);
+
+  const enhancedPoll = {
+    ...poll,
+    hasVoted: !!userVote,
+    userVote: userVote ? userVote.optionId : null
+  };
+
+  res.json({ poll: enhancedPoll, votes: pollVotes });
 });
 
 // Vote on poll
 router.post('/:pollId/vote', verifyToken, (req, res) => {
   const { optionId } = req.body;
   const db = readDB();
-  
+
   const pollIndex = db.polls.findIndex(p => p.id === req.params.pollId);
   if (pollIndex === -1) {
     return res.status(404).json({ error: 'Poll not found' });
   }
 
   const poll = db.polls[pollIndex];
-  
+
   if (poll.status !== 'active') {
     return res.status(400).json({ error: 'Poll is not active' });
   }
 
   // Check if user already voted
-  const existingVote = db.votes.find(v => 
+  const existingVote = db.votes.find(v =>
     v.pollId === poll.id && v.userEmail === req.user.email
   );
 
@@ -102,7 +109,7 @@ router.post('/:pollId/vote', verifyToken, (req, res) => {
     if (oldOptionIndex >= 0) {
       poll.options[oldOptionIndex].votes = Math.max(0, poll.options[oldOptionIndex].votes - 1);
     }
-    
+
     existingVote.optionId = optionId;
     existingVote.votedAt = new Date().toISOString();
   } else {
@@ -136,8 +143,15 @@ router.post('/:pollId/vote', verifyToken, (req, res) => {
 // Get polls for room
 router.get('/room/:roomId', verifyToken, (req, res) => {
   const db = readDB();
-  const polls = db.polls.filter(p => p.roomId === req.params.roomId);
-  
+  const polls = db.polls.filter(p => p.roomId === req.params.roomId).map(poll => {
+    const userVote = db.votes.find(v => v.pollId === poll.id && v.userEmail === req.user.email);
+    return {
+      ...poll,
+      hasVoted: !!userVote,
+      userVote: userVote ? userVote.optionId : null
+    };
+  });
+
   res.json({ polls });
 });
 
@@ -145,7 +159,7 @@ router.get('/room/:roomId', verifyToken, (req, res) => {
 router.post('/:pollId/close', verifyToken, (req, res) => {
   const db = readDB();
   const pollIndex = db.polls.findIndex(p => p.id === req.params.pollId);
-  
+
   if (pollIndex === -1) {
     return res.status(404).json({ error: 'Poll not found' });
   }
@@ -153,7 +167,7 @@ router.post('/:pollId/close', verifyToken, (req, res) => {
   const poll = db.polls[pollIndex];
   const room = db.rooms.find(r => r.id === poll.roomId);
   const member = room.members.find(m => m.email === req.user.email);
-  
+
   if (!member || (member.role !== 'admin' && room.creator !== req.user.email)) {
     return res.status(403).json({ error: 'Not authorized' });
   }
@@ -169,28 +183,72 @@ router.post('/:pollId/close', verifyToken, (req, res) => {
 });
 
 // Search polls (all public room polls + user's room polls)
-router.get('/search/:query', verifyToken, (req, res) => {
+router.get('/search/', (req, res) => {
+  const token = req.headers.authorization?.replace('Bearer ', '');
+  let userEmail = null;
+
+  if (token) {
+    try {
+      const jwt = require('jsonwebtoken');
+      const decoded = jwt.verify(token, 'fake-jwt-secret-for-demo-only');
+      userEmail = decoded.email;
+    } catch (e) { }
+  }
+
   const db = readDB();
-  const query = req.params.query.toLowerCase();
-  
-  // Get user's rooms
-  const userRooms = db.rooms.filter(r => 
-    r.members.some(m => m.email === req.user.email) || r.creator === req.user.email
-  );
+
+  // Get user's rooms if logged in
+  const userRooms = userEmail ? db.rooms.filter(r =>
+    r.members.some(m => m.email === userEmail) || r.creator === userEmail
+  ) : [];
   const userRoomIds = userRooms.map(r => r.id);
-  
+
   // Get public rooms
   const publicRooms = db.rooms.filter(r => !r.isPrivate);
   const publicRoomIds = publicRooms.map(r => r.id);
-  
+
   // Combine room IDs
   const allRoomIds = [...new Set([...userRoomIds, ...publicRoomIds])];
-  
+
+  // Get all polls in these rooms
+  const allPolls = db.polls.filter(p => allRoomIds.includes(p.roomId));
+
+  res.json({ polls: allPolls });
+});
+
+router.get('/search/:query', (req, res) => {
+  const token = req.headers.authorization?.replace('Bearer ', '');
+  let userEmail = null;
+
+  if (token) {
+    try {
+      const jwt = require('jsonwebtoken');
+      const decoded = jwt.verify(token, 'fake-jwt-secret-for-demo-only');
+      userEmail = decoded.email;
+    } catch (e) { }
+  }
+
+  const db = readDB();
+  const query = req.params.query.toLowerCase();
+
+  // Get user's rooms
+  const userRooms = userEmail ? db.rooms.filter(r =>
+    r.members.some(m => m.email === userEmail) || r.creator === userEmail
+  ) : [];
+  const userRoomIds = userRooms.map(r => r.id);
+
+  // Get public rooms
+  const publicRooms = db.rooms.filter(r => !r.isPrivate);
+  const publicRoomIds = publicRooms.map(r => r.id);
+
+  // Combine room IDs
+  const allRoomIds = [...new Set([...userRoomIds, ...publicRoomIds])];
+
   // Search polls in these rooms
-  const matchingPolls = db.polls.filter(p => 
+  const matchingPolls = db.polls.filter(p =>
     allRoomIds.includes(p.roomId) &&
     (p.question.toLowerCase().includes(query) ||
-     p.options.some(opt => opt.text.toLowerCase().includes(query)))
+      p.options.some(opt => opt.text.toLowerCase().includes(query)))
   );
 
   res.json({ polls: matchingPolls });
@@ -200,14 +258,14 @@ router.get('/search/:query', verifyToken, (req, res) => {
 router.delete('/:pollId', verifyToken, (req, res) => {
   const db = readDB();
   const pollIndex = db.polls.findIndex(p => p.id === req.params.pollId);
-  
+
   if (pollIndex === -1) {
     return res.status(404).json({ error: 'Poll not found' });
   }
 
   const poll = db.polls[pollIndex];
   const room = db.rooms.find(r => r.id === poll.roomId);
-  
+
   if (!room) {
     return res.status(404).json({ error: 'Room not found' });
   }
@@ -216,7 +274,7 @@ router.delete('/:pollId', verifyToken, (req, res) => {
   const isSuperAdmin = db.users.find(u => u.email === req.user.email)?.role === 'super_admin';
   const member = room.members.find(m => m.email === req.user.email);
   const isRoomAdmin = member?.role === 'admin' || room.creator === req.user.email;
-  
+
   if (!isSuperAdmin && poll.creator !== req.user.email && !isRoomAdmin) {
     return res.status(403).json({ error: 'Not authorized to delete poll' });
   }
@@ -233,14 +291,14 @@ router.delete('/:pollId', verifyToken, (req, res) => {
 router.put('/:pollId', verifyToken, (req, res) => {
   const db = readDB();
   const pollIndex = db.polls.findIndex(p => p.id === req.params.pollId);
-  
+
   if (pollIndex === -1) {
     return res.status(404).json({ error: 'Poll not found' });
   }
 
   const poll = db.polls[pollIndex];
   const room = db.rooms.find(r => r.id === poll.roomId);
-  
+
   if (!room) {
     return res.status(404).json({ error: 'Room not found' });
   }
@@ -248,7 +306,7 @@ router.put('/:pollId', verifyToken, (req, res) => {
   const isSuperAdmin = db.users.find(u => u.email === req.user.email)?.role === 'super_admin';
   const member = room.members.find(m => m.email === req.user.email);
   const isRoomAdmin = member?.role === 'admin' || room.creator === req.user.email;
-  
+
   if (!isSuperAdmin && poll.creator !== req.user.email && !isRoomAdmin) {
     return res.status(403).json({ error: 'Not authorized to update poll' });
   }

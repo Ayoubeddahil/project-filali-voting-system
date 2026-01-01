@@ -1,6 +1,7 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
+import { api } from '../utils/api'
 import AuthModal from '../components/AuthModal'
 import {
   ArrowRight,
@@ -13,15 +14,40 @@ import {
   Github,
   Twitter,
   Linkedin,
-  Mail
+  Mail,
+  TrendingUp,
+  Clock
 } from 'lucide-react'
 
 export default function Landing() {
   const navigate = useNavigate()
   const { user } = useAuth()
   const [showAuthModal, setShowAuthModal] = useState(false)
+  const [featuredPolls, setFeaturedPolls] = useState([])
+  const [popularRooms, setPopularRooms] = useState([])
+  const [loading, setLoading] = useState(true)
 
-  // Redirect if already logged in
+  useEffect(() => {
+    loadPublicData()
+  }, [])
+
+  const loadPublicData = async () => {
+    try {
+      const [roomsRes, pollsRes] = await Promise.all([
+        api.searchRooms(''),
+        api.searchPolls('')
+      ])
+      setPopularRooms((roomsRes.data.rooms || []).slice(0, 3))
+      setFeaturedPolls((pollsRes.data.polls || []).sort((a, b) => b.totalVotes - a.totalVotes).slice(0, 3))
+    } catch (error) {
+      console.error('Failed to load public data:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  // Redirect if already logged in - but only if NOT on the root / route or if they want to see landing
+  // Usually landing is for non-logged in users.
   if (user) {
     navigate('/home')
     return null
@@ -165,6 +191,116 @@ export default function Landing() {
                       <div className="h-4 w-8 bg-white/10 rounded"></div>
                     </div>
                   ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Content Preview */}
+      <section className="py-24 bg-white border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <div className="max-w-2xl">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">Explore what's happening</h2>
+              <p className="text-gray-500 text-lg">Join thousands of users participating in public polls and communities across diverse topics.</p>
+            </div>
+            <button
+              onClick={() => setShowAuthModal(true)}
+              className="group flex items-center gap-2 text-gray-900 font-bold hover:gap-3 transition-all"
+            >
+              View all polls <ArrowRight className="w-5 h-5" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+            {featuredPolls.length > 0 ? featuredPolls.map((poll) => (
+              <div
+                key={poll.id}
+                onClick={() => setShowAuthModal(true)}
+                className="group cursor-pointer bg-gray-50 rounded-3xl p-8 border border-transparent hover:border-gray-200 hover:bg-white hover:shadow-2xl transition-all duration-500"
+              >
+                <div className="flex items-center justify-between mb-6">
+                  <span className="px-3 py-1 bg-white rounded-full text-[10px] font-bold uppercase tracking-wider text-gray-400">Trending</span>
+                  <div className="flex items-center gap-1.5 text-xs text-gray-400">
+                    <Users className="w-3.5 h-3.5" />
+                    {poll.totalVotes} votes
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-6 group-hover:text-black line-clamp-2 leading-snug">
+                  {poll.question}
+                </h3>
+                <div className="space-y-3 mb-8">
+                  {poll.options.slice(0, 2).map((opt, i) => (
+                    <div key={i} className="relative h-10 bg-white rounded-xl border border-gray-100 overflow-hidden">
+                      <div
+                        className="absolute inset-y-0 left-0 bg-gray-900/5 transition-all duration-1000"
+                        style={{ width: `${(opt.votes / (poll.totalVotes || 1)) * 100}%` }}
+                      ></div>
+                      <div className="relative h-full flex items-center justify-between px-4 text-sm font-medium text-gray-600">
+                        <span className="truncate pr-2">{opt.text}</span>
+                        <span>{Math.round((opt.votes / (poll.totalVotes || 1)) * 100)}%</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="pt-6 border-t border-gray-100 flex items-center justify-between">
+                  <span className="text-xs font-bold text-gray-900 group-hover:underline">Join to Vote</span>
+                  <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-black transform group-hover:translate-x-1 transition-all" />
+                </div>
+              </div>
+            )) : (
+              [1, 2, 3].map(i => (
+                <div key={i} className="h-[300px] bg-gray-50 rounded-3xl animate-pulse"></div>
+              ))
+            )}
+          </div>
+
+          <div className="bg-gray-900 rounded-[40px] p-8 md:p-16 text-white overflow-hidden relative">
+            <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-500/10 to-transparent"></div>
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">Join active communities</h2>
+                <p className="text-gray-400 text-lg mb-10">Connect with like-minded individuals in dedicated rooms. Discussion, debate, and discovery.</p>
+                <div className="space-y-4">
+                  {popularRooms.map(room => (
+                    <div key={room.id} className="flex items-center gap-4 p-4 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 transition-colors cursor-pointer" onClick={() => setShowAuthModal(true)}>
+                      <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center font-bold text-white">
+                        {room.name.charAt(0)}
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-white">{room.name}</h4>
+                        <p className="text-sm text-gray-400">{room.members?.length || 0} members • {room.topics?.slice(0, 2).join(', ')}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="hidden lg:block">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-4">
+                    <div className="h-40 bg-white/5 rounded-3xl border border-white/10 p-6">
+                      <TrendingUp className="w-8 h-8 text-blue-400 mb-4" />
+                      <div className="h-2 w-16 bg-white/20 rounded-full mb-2"></div>
+                      <div className="h-2 w-10 bg-white/10 rounded-full"></div>
+                    </div>
+                    <div className="h-60 bg-white/5 rounded-3xl border border-white/10 p-6">
+                      <Users className="w-8 h-8 text-purple-400 mb-4" />
+                      <div className="h-2 w-20 bg-white/20 rounded-full mb-2"></div>
+                      <div className="h-2 w-12 bg-white/10 rounded-full"></div>
+                    </div>
+                  </div>
+                  <div className="space-y-4 pt-8">
+                    <div className="h-60 bg-white/5 rounded-3xl border border-white/10 p-6">
+                      <BarChart3 className="w-8 h-8 text-green-400 mb-4" />
+                      <div className="h-2 w-24 bg-white/20 rounded-full mb-2"></div>
+                      <div className="h-2 w-16 bg-white/10 rounded-full"></div>
+                    </div>
+                    <div className="h-40 bg-white/5 rounded-3xl border border-white/10 p-6">
+                      <Clock className="w-8 h-8 text-orange-400 mb-4" />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

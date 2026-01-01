@@ -45,29 +45,16 @@ export default function Home() {
   const loadData = async () => {
     try {
       if (user?.email) {
-        // Get user's rooms
-        const roomsRes = await api.getUserRooms(user.email)
-        const userRooms = roomsRes.data.rooms || []
+        // Use the new consolidated search endpoints (empty query = all visible)
+        const [roomsRes, pollsRes] = await Promise.all([
+          api.searchRooms(''),
+          api.searchPolls('')
+        ])
 
-        // Also get public rooms for discovery
-        try {
-          const searchRes = await api.searchRooms('')
-          const allRooms = searchRes.data.rooms || []
-          // Combine and deduplicate
-          const roomMap = new Map()
-          allRooms.forEach(r => roomMap.set(r.id, r))
-          setRooms(Array.from(roomMap.values()))
-        } catch (e) {
-          setRooms(userRooms)
-        }
+        const allRooms = roomsRes.data.rooms || []
+        const allPollsData = pollsRes.data.polls || []
 
-        // Get all polls from all visible rooms
-        const allRoomsForPolls = rooms.length > 0 ? rooms : userRooms
-        const pollsPromises = allRoomsForPolls.map(room =>
-          api.getRoomPolls(room.id).catch(() => ({ data: { polls: [] } }))
-        )
-        const pollsResults = await Promise.all(pollsPromises)
-        const allPollsData = pollsResults.flatMap(res => res.data.polls || [])
+        setRooms(allRooms)
         setAllPolls(allPollsData)
       }
     } catch (error) {
@@ -117,10 +104,10 @@ export default function Home() {
 
     let matchesFilter = true
     if (filter === 'active') matchesFilter = room.status === 'active'
-    if (filter === 'popular') matchesFilter = (room.members?.length || 0) > 5
+    if (filter === 'popular') matchesFilter = true // We'll sort by members instead
     if (filter === 'recent') {
       const daysSince = (Date.now() - new Date(room.createdAt).getTime()) / (1000 * 60 * 60 * 24)
-      matchesFilter = daysSince < 7
+      matchesFilter = daysSince < 30 // Increased from 7 to match demo data
     }
 
     return matchesType && matchesFilter
@@ -131,17 +118,27 @@ export default function Home() {
 
     let matchesFilter = true
     if (filter === 'active') matchesFilter = poll.status === 'active'
-    if (filter === 'popular') matchesFilter = (poll.totalVotes || 0) > 10
+    if (filter === 'popular') matchesFilter = true // We'll sort by totalVotes
     if (filter === 'recent') {
       const daysSince = (Date.now() - new Date(poll.createdAt).getTime()) / (1000 * 60 * 60 * 24)
-      matchesFilter = daysSince < 7
+      matchesFilter = daysSince < 30 // Increased from 7 to match demo data
     }
 
     return matchesType && matchesFilter
   })
 
-  // Sort polls by votes (most viewed)
-  const sortedPolls = [...filteredPolls].sort((a, b) => (b.totalVotes || 0) - (a.totalVotes || 0))
+  // Sort logic based on filter
+  const sortedPolls = [...filteredPolls].sort((a, b) => {
+    if (filter === 'popular') return (b.totalVotes || 0) - (a.totalVotes || 0)
+    if (filter === 'recent') return new Date(b.createdAt) - new Date(a.createdAt)
+    return 0
+  })
+
+  const sortedRooms = [...filteredRooms].sort((a, b) => {
+    if (filter === 'popular') return (b.members?.length || 0) - (a.members?.length || 0)
+    if (filter === 'recent') return new Date(b.createdAt) - new Date(a.createdAt)
+    return 0
+  })
 
   if (loading) {
     return (
@@ -283,7 +280,7 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredRooms.slice(0, 6).map((room) => (
+              {sortedRooms.slice(0, 6).map((room) => (
                 <Link
                   key={room.id}
                   to={`/room/${room.id}`}
