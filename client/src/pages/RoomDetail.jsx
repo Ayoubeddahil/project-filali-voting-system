@@ -20,34 +20,23 @@ export default function RoomDetail() {
   const [loading, setLoading] = useState(true)
   const [showCreatePoll, setShowCreatePoll] = useState(false)
   const [copiedCode, setCopiedCode] = useState(false)
-
-  // Toast Notification State
   const [toast, setToast] = useState(null)
-
-
 
   useEffect(() => {
     loadRoom()
     if (socket) {
       socket.emit('join_room', { roomId, user })
-      // socket.on('poll_updated', handlePollUpdate) -> Moved to separate effect with notification logic
-      socket.on('poll_created', handlePollUpdate) // Re-use update handler (reloads room)
-
-      // Removed duplicate/incorrect 'vote-received' listener as 'poll_updated' should cover it
-      // or if we want to be specific we can keep it but mapped to 'poll_updated' logic
+      socket.on('poll_created', handlePollUpdate)
 
       return () => {
-        // socket.off('poll_updated') -> Handled in separate effect
         socket.off('poll_created')
       }
     }
   }, [roomId, socket])
 
-  // Refs to access latest state inside socket listener without re-binding
   const roomRef = useRef(room)
   const userRef = useRef(user)
 
-  // Update refs when state changes
   useEffect(() => {
     roomRef.current = room
   }, [room])
@@ -62,7 +51,6 @@ export default function RoomDetail() {
         const currentRoom = roomRef.current
         const currentUser = userRef.current
 
-        // Admin check using fresh ref data
         const isCreator = currentRoom?.creator === currentUser?.email
         const isAdminMember = currentRoom?.members?.find(m => m.email === currentUser?.email)?.role === 'admin'
         const isUserAdmin = isCreator || isAdminMember
@@ -70,11 +58,10 @@ export default function RoomDetail() {
         const voterName = data.voterName || 'Someone'
         const isNotSelf = voterName !== currentUser?.name
 
-        if (isUserAdmin && isNotSelf && data.voterName) { // Only notify if we actually have a voter name (implies it's a vote event)
-          showToast(`🗳️ ${voterName} voted on a poll!`)
+        if (isUserAdmin && isNotSelf && data.voterName) {
+          showToast(`${voterName} voted on a poll!`)
         }
 
-        // Always reload data
         handlePollUpdate(data)
       }
 
@@ -84,7 +71,7 @@ export default function RoomDetail() {
         socket.off('poll_updated', onPollUpdate)
       }
     }
-  }, [roomId, socket]) // Dependencies reduced to stable items
+  }, [roomId, socket])
 
   const loadRoom = async () => {
     try {
@@ -155,12 +142,6 @@ export default function RoomDetail() {
     )
   }
 
-
-
-  // ... (previous effects)
-
-
-
   const showToast = (message) => {
     setToast(message)
     setTimeout(() => setToast(null), 3000)
@@ -170,7 +151,6 @@ export default function RoomDetail() {
     <>
       <Navbar />
 
-      {/* Toast Notification */}
       {toast && (
         <div className="fixed top-24 right-4 z-[100] animate-bounce-in">
           <div className="bg-gray-900 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-3 border border-gray-800">
@@ -197,7 +177,6 @@ export default function RoomDetail() {
             Back to Dashboard
           </button>
 
-          {/* Room Header */}
           <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 mb-8">
             <div className="flex flex-col md:flex-row justify-between items-start gap-6">
               <div className="flex-1">
@@ -283,7 +262,6 @@ export default function RoomDetail() {
             </div>
           </div>
 
-          {/* Room Tabs Component */}
           <RoomTabs
             room={room}
             polls={polls}
@@ -292,11 +270,9 @@ export default function RoomDetail() {
             onCreatePoll={() => setShowCreatePoll(true)}
           />
 
-          {/* Poll Card Feed - shown below tabs as well for visibility */}
           <div className="mt-12">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold text-gray-900">Active Polls</h2>
-
             </div>
 
             {polls.length === 0 ? (
@@ -332,12 +308,10 @@ export default function RoomDetail() {
             )}
           </div>
 
-          {/* Sidebar Area (e.g. Google Integrations) */}
           <div className="mt-12 pt-12 border-t border-gray-200">
             <h2 className="text-lg font-bold text-gray-900 mb-6">Integrations & Settings</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <GoogleIntegrations room={room} polls={polls} />
-              {/* Future settings panels can go here */}
             </div>
           </div>
         </div>
@@ -353,4 +327,3 @@ export default function RoomDetail() {
     </>
   )
 }
-

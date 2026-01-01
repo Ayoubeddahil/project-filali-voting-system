@@ -46,8 +46,6 @@ export default function Landing() {
     }
   }
 
-  // Redirect if already logged in - but only if NOT on the root / route or if they want to see landing
-  // Usually landing is for non-logged in users.
   if (user) {
     navigate('/home')
     return null
@@ -55,7 +53,6 @@ export default function Landing() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Navigation */}
       <nav className="fixed w-full bg-white/80 backdrop-blur-md border-b border-gray-100 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
@@ -79,7 +76,6 @@ export default function Landing() {
         </div>
       </nav>
 
-      {/* Hero Section */}
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center max-w-4xl mx-auto">
           <div className="inline-flex items-center px-3 py-1 rounded-full border border-gray-200 bg-gray-50 text-xs font-medium text-gray-600 mb-8">
@@ -108,7 +104,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Key Features */}
       <section className="py-20 bg-gray-50/50 border-y border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -129,7 +124,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Use Cases Section */}
       <section id="features" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -139,13 +133,12 @@ export default function Landing() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { emoji: "🎓", title: "Education", desc: "Instant feedback for lectures and seminars." },
-              { emoji: "🏢", title: "Enterprise", desc: "Agile retrospectives and team alignment." },
-              { emoji: "🎮", title: "Gaming", desc: "Community tournaments and viewer votes." },
-              { emoji: "📊", title: "Research", desc: "Unbiased data collection from focus groups." }
+              { title: "Education", desc: "Instant feedback for lectures and seminars." },
+              { title: "Enterprise", desc: "Agile retrospectives and team alignment." },
+              { title: "Gaming", desc: "Community tournaments and viewer votes." },
+              { title: "Research", desc: "Unbiased data collection from focus groups." }
             ].map((item, i) => (
               <div key={i} className="group p-6 rounded-2xl bg-gray-50 hover:bg-white border border-transparent hover:border-gray-200 transition-all duration-300">
-                <div className="text-4xl mb-4 grayscale group-hover:grayscale-0 transition-all">{item.emoji}</div>
                 <h3 className="text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
                 <p className="text-sm text-gray-500">{item.desc}</p>
               </div>
@@ -154,7 +147,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* How It Works - Minimal Step Process */}
       <section id="how-it-works" className="py-24 bg-gray-900 text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
@@ -198,7 +190,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Featured Content Preview */}
       <section className="py-24 bg-white border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
@@ -308,7 +299,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="py-24 bg-white border-t border-gray-100">
         <div className="max-w-3xl mx-auto text-center px-4">
           <h2 className="text-4xl font-bold text-gray-900 mb-6">Ready to simplify?</h2>
@@ -322,7 +312,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="bg-white border-t border-gray-100 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-2">
@@ -346,4 +335,3 @@ export default function Landing() {
     </div>
   )
 }
-

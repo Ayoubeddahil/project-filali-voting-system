@@ -22,8 +22,8 @@ export default function Home() {
   const [allPolls, setAllPolls] = useState([])
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState('')
-  const [searchType, setSearchType] = useState('all') // 'all', 'rooms', 'polls'
-  const [filter, setFilter] = useState('all') // 'all', 'active', 'popular', 'recent'
+  const [searchType, setSearchType] = useState('all')
+  const [filter, setFilter] = useState('all')
   const [showSearchDropdown, setShowSearchDropdown] = useState(false)
 
   useEffect(() => {
@@ -37,7 +37,7 @@ export default function Home() {
       } else {
         loadData()
       }
-    }, 300) // Debounce 300ms
+    }, 300)
 
     return () => clearTimeout(timeoutId)
   }, [searchQuery, searchType, filter])
@@ -45,7 +45,6 @@ export default function Home() {
   const loadData = async () => {
     try {
       if (user?.email) {
-        // Use the new consolidated search endpoints (empty query = all visible)
         const [roomsRes, pollsRes] = await Promise.all([
           api.searchRooms(''),
           api.searchPolls('')
@@ -70,7 +69,6 @@ export default function Home() {
       return
     }
 
-    // Do not set global loading here to avoid unmounting the input
     try {
       const promises = []
 
@@ -98,16 +96,15 @@ export default function Home() {
     }
   }
 
-  // Filter logic (applied after search)
   const filteredRooms = rooms.filter(room => {
     const matchesType = searchType === 'all' || searchType === 'rooms'
 
     let matchesFilter = true
     if (filter === 'active') matchesFilter = room.status === 'active'
-    if (filter === 'popular') matchesFilter = true // We'll sort by members instead
+    if (filter === 'popular') matchesFilter = true
     if (filter === 'recent') {
       const daysSince = (Date.now() - new Date(room.createdAt).getTime()) / (1000 * 60 * 60 * 24)
-      matchesFilter = daysSince < 30 // Increased from 7 to match demo data
+      matchesFilter = daysSince < 30
     }
 
     return matchesType && matchesFilter
@@ -118,16 +115,15 @@ export default function Home() {
 
     let matchesFilter = true
     if (filter === 'active') matchesFilter = poll.status === 'active'
-    if (filter === 'popular') matchesFilter = true // We'll sort by totalVotes
+    if (filter === 'popular') matchesFilter = true
     if (filter === 'recent') {
       const daysSince = (Date.now() - new Date(poll.createdAt).getTime()) / (1000 * 60 * 60 * 24)
-      matchesFilter = daysSince < 30 // Increased from 7 to match demo data
+      matchesFilter = daysSince < 30
     }
 
     return matchesType && matchesFilter
   })
 
-  // Sort logic based on filter
   const sortedPolls = [...filteredPolls].sort((a, b) => {
     if (filter === 'popular') return (b.totalVotes || 0) - (a.totalVotes || 0)
     if (filter === 'recent') return new Date(b.createdAt) - new Date(a.createdAt)
@@ -155,7 +151,6 @@ export default function Home() {
     <>
       <Navbar />
       <div className="min-h-screen bg-gray-50">
-        {/* Generative Hero Section */}
         <div className="bg-white border-b border-gray-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
             <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-8 text-center tracking-tight text-balance">
@@ -208,7 +203,6 @@ export default function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          {/* Featured Polls Grid */}
           <div className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
               <TrendingUp className="w-6 h-6 text-gray-900" />
@@ -270,7 +264,6 @@ export default function Home() {
             )}
           </div>
 
-          {/* Public Rooms Grid */}
           <div>
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -322,4 +315,3 @@ export default function Home() {
     </>
   )
 }
-

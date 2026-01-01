@@ -21,12 +21,10 @@ const io = new Server(server, {
   }
 });
 
-// Middleware
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Initialize fake database
 const dbPath = path.join(__dirname, 'db.json');
 if (!fs.existsSync(dbPath)) {
   const initialDb = {
@@ -39,7 +37,6 @@ if (!fs.existsSync(dbPath)) {
   fs.writeFileSync(dbPath, JSON.stringify(initialDb, null, 2));
 }
 
-// Seed database with demo data
 const { seedDatabase } = require('./utils/seedData');
 try {
   seedDatabase();
@@ -47,14 +44,12 @@ try {
   console.log('Note: Some demo data may already exist');
 }
 
-// Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/rooms', roomsRoutes);
 app.use('/api/polls', pollsRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/google', googleRoutes);
 
-// Serve exported files
 const exportsDir = path.join(__dirname, 'exports');
 if (!fs.existsSync(exportsDir)) {
   fs.mkdirSync(exportsDir, { recursive: true });
@@ -62,12 +57,10 @@ if (!fs.existsSync(exportsDir)) {
 app.use('/api/google/sheets/download', express.static(exportsDir));
 app.use('/api/google/drive/download', express.static(exportsDir));
 
-// Socket.IO for fake real-time updates
 require('./socket/roomEvents')(io);
 
 const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
-  console.log(`🚀 Fake server running on http://localhost:${PORT}`);
-  console.log(`📡 Socket.IO ready for fake real-time events`);
+  console.log(`Fake server running on http://localhost:${PORT}`);
+  console.log(`Socket.IO ready for fake real-time events`);
 });
-

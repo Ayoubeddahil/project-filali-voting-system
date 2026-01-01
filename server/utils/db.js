@@ -17,10 +17,10 @@ function addActivity(type, description, userId, roomId = null, pollId = null) {
   if (!db.activities) {
     db.activities = [];
   }
-  
+
   const activity = {
     id: generateId('activity-'),
-    action: type, // 'room_created', 'poll_created', 'vote', 'member_joined', 'poll_closed'
+    action: type,
     type,
     description,
     userId,
@@ -29,14 +29,13 @@ function addActivity(type, description, userId, roomId = null, pollId = null) {
     pollId,
     timestamp: new Date().toISOString()
   };
-  
-  db.activities.unshift(activity); // Add to beginning
-  
-  // Keep only last 1000 activities
+
+  db.activities.unshift(activity);
+
   if (db.activities.length > 1000) {
     db.activities = db.activities.slice(0, 1000);
   }
-  
+
   writeDB(db);
   return activity;
 }
@@ -65,4 +64,3 @@ module.exports = {
   generateRoomCode,
   addActivity
 };
-

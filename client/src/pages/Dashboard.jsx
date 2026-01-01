@@ -49,17 +49,14 @@ export default function Dashboard() {
   const loadStats = async () => {
     try {
       if (user?.email) {
-        // Get all polls from user's rooms to calculate real votes
         const pollsPromises = rooms.map(room =>
           api.getRoomPolls(room.id).catch(() => ({ data: { polls: [] } }))
         )
         const pollsResults = await Promise.all(pollsPromises)
         const allPolls = pollsResults.flatMap(res => res.data.polls || [])
 
-        // Calculate total votes
         const totalVotes = allPolls.reduce((sum, poll) => sum + (poll.totalVotes || 0), 0)
 
-        // Calculate today's visits (activities today)
         const activitiesRes = await api.getActivities(user.email).catch(() => ({ data: { activities: [] } }))
         const today = new Date().toDateString()
         const todayVisits = (activitiesRes.data.activities || []).filter(act =>
@@ -87,7 +84,6 @@ export default function Dashboard() {
         const response = await api.getActivities(user.email)
         const activities = response.data.activities || []
 
-        // Format activities for display
         const formatted = activities.map(act => {
           const date = new Date(act.timestamp)
           const time = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
@@ -103,7 +99,6 @@ export default function Dashboard() {
       }
     } catch (error) {
       console.error('Failed to load activity:', error)
-      // Fallback to empty array
       setActivity([])
     }
   }
@@ -136,7 +131,6 @@ export default function Dashboard() {
       <Navbar />
       <div className="min-h-screen bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          {/* Welcome Section */}
           <div className="mb-12">
             <h1 className="text-4xl font-bold text-gray-900 mb-3 tracking-tight">
               Welcome back, {user?.name?.split(' ')[0] || 'User'}
@@ -144,7 +138,6 @@ export default function Dashboard() {
             <p className="text-lg text-gray-500">Manage your voting rooms and track activity.</p>
           </div>
 
-          {/* Quick Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
             {[
               { label: "Active Rooms", value: stats.activeRooms, icon: BarChart3 },
@@ -259,7 +252,6 @@ export default function Dashboard() {
             </div>
           )}
 
-          {/* Recent Activity & Actions Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2 bg-white rounded-2xl border border-gray-100 p-6">
               <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
@@ -309,4 +301,3 @@ export default function Dashboard() {
     </>
   )
 }
-

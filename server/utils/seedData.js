@@ -4,8 +4,7 @@ const path = require('path');
 
 function seedDatabase() {
   const db = readDB();
-  
-  // Add more demo users
+
   const demoUsers = [
     {
       id: "google-005",
@@ -45,7 +44,6 @@ function seedDatabase() {
     }
   ];
 
-  // Add users if they don't exist
   demoUsers.forEach(user => {
     const exists = db.users.find(u => u.email === user.email);
     if (!exists) {
@@ -53,7 +51,6 @@ function seedDatabase() {
     }
   });
 
-  // Create demo rooms with polls
   const demoRooms = [
     {
       id: generateId('room-'),
@@ -107,7 +104,6 @@ function seedDatabase() {
     }
   ];
 
-  // Add demo rooms if they don't exist (check by name)
   demoRooms.forEach(room => {
     const exists = db.rooms.find(r => r.name === room.name);
     if (!exists) {
@@ -115,7 +111,6 @@ function seedDatabase() {
     }
   });
 
-  // Create demo polls for these rooms
   const demoPolls = [];
   db.rooms.forEach(room => {
     if (room.name === "Advanced Mathematics") {
@@ -205,13 +200,11 @@ function seedDatabase() {
     }
   });
 
-  // Add demo polls
   demoPolls.forEach(poll => {
     const exists = db.polls.find(p => p.question === poll.question && p.roomId === poll.roomId);
     if (!exists) {
       db.polls.push(poll);
-      
-      // Create fake votes
+
       const room = db.rooms.find(r => r.id === poll.roomId);
       if (room) {
         room.members.forEach((member, idx) => {
@@ -231,8 +224,7 @@ function seedDatabase() {
   });
 
   writeDB(db);
-  console.log('✅ Database seeded with demo data');
+  console.log('Database seeded with demo data');
 }
 
 module.exports = { seedDatabase };
-

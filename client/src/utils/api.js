@@ -3,11 +3,9 @@ import axios from 'axios'
 const API_URL = 'http://localhost:3001/api'
 
 export const api = {
-  // Auth
   getGoogleUsers: () => axios.get(`${API_URL}/auth/google/users`),
   login: (email) => axios.post(`${API_URL}/auth/google/login`, { email }),
 
-  // Rooms
   createRoom: (data) => {
     const token = localStorage.getItem('token');
     return axios.post(`${API_URL}/rooms/create`, data, {
@@ -39,7 +37,6 @@ export const api = {
     });
   },
 
-  // Polls
   createPoll: (data) => {
     const token = localStorage.getItem('token');
     return axios.post(`${API_URL}/polls/create`, data, {
@@ -71,7 +68,6 @@ export const api = {
     });
   },
 
-  // Admin
   getAllRooms: () => {
     const token = localStorage.getItem('token');
     return axios.get(`${API_URL}/admin/rooms`, {
@@ -109,7 +105,6 @@ export const api = {
     });
   },
 
-  // Google integrations
   saveToSheets: (data) => {
     const token = localStorage.getItem('token');
     return axios.post(`${API_URL}/google/sheets/save`, data, {
@@ -135,7 +130,6 @@ export const api = {
     });
   },
 
-  // Search
   searchRooms: (query) => {
     const token = localStorage.getItem('token');
     return axios.get(`${API_URL}/rooms/search/${encodeURIComponent(query)}`, {
@@ -161,7 +155,6 @@ export const api = {
     });
   },
 
-  // Admin actions
   deleteRoom: (roomId) => {
     const token = localStorage.getItem('token');
     return axios.delete(`${API_URL}/rooms/${roomId}`, {
@@ -181,4 +174,3 @@ export const api = {
     });
   }
 }
-

@@ -3,26 +3,22 @@ const { readDB, writeDB, generateId, generateRoomCode, addActivity } = require('
 
 const router = express.Router();
 
-// Middleware to verify token (simplified)
 function verifyToken(req, res, next) {
   const token = req.headers.authorization?.replace('Bearer ', '');
   if (!token || token === 'null' || token === 'undefined') {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
-  // Try to decode token to get user email
   try {
     const jwt = require('jsonwebtoken');
     const decoded = jwt.verify(token, 'fake-jwt-secret-for-demo-only');
     req.user = { email: decoded.email || req.body.userEmail || 'admin@gmail.com' };
   } catch (error) {
-    // If token invalid, use body or default
     req.user = { email: req.body.userEmail || 'admin@gmail.com' };
   }
   next();
 }
 
-// Create room
 router.post('/create', verifyToken, (req, res) => {
   const { name, description, topics, isPrivate } = req.body;
   const db = readDB();
@@ -47,13 +43,11 @@ router.post('/create', verifyToken, (req, res) => {
   db.rooms.push(room);
   writeDB(db);
 
-  // Add activity
   addActivity('room_created', `Room "${name}" created`, req.user.email, room.id);
 
   res.json({ room });
 });
 
-// Join room by code
 router.post('/join', verifyToken, (req, res) => {
   const { code } = req.body;
   const db = readDB();
@@ -64,7 +58,6 @@ router.post('/join', verifyToken, (req, res) => {
     return res.status(404).json({ error: 'Room not found or inactive' });
   }
 
-  // Check if user already in room
   const existingMember = room.members.find(m => m.email === req.user.email);
   if (!existingMember) {
     room.members.push({
@@ -74,14 +67,12 @@ router.post('/join', verifyToken, (req, res) => {
     });
     writeDB(db);
 
-    // Add activity
     addActivity('member_joined', `${req.user.email} joined room "${room.name}"`, req.user.email, room.id, null);
   }
 
   res.json({ room });
 });
 
-// Invite user to room
 router.post('/:roomId/invite', verifyToken, (req, res) => {
   const { email } = req.body;
   const db = readDB();
@@ -98,19 +89,16 @@ router.post('/:roomId/invite', verifyToken, (req, res) => {
     return res.status(403).json({ error: 'Not authorized to invite members' });
   }
 
-  // Check if user exists
   const user = db.users.find(u => u.email === email);
   if (!user) {
     return res.status(404).json({ error: 'User not found' });
   }
 
-  // Check if already a member
   const existingMember = room.members.find(m => m.email === email);
   if (existingMember) {
     return res.status(400).json({ error: 'User is already a member' });
   }
 
-  // Add member
   room.members.push({
     email: email,
     role: 'member',
@@ -120,13 +108,11 @@ router.post('/:roomId/invite', verifyToken, (req, res) => {
   db.rooms[roomIndex] = room;
   writeDB(db);
 
-  // Add activity
   addActivity('member_joined', `${email} was invited to room "${room.name}"`, req.user.email, room.id);
 
   res.json({ room, message: 'User invited successfully' });
 });
 
-// Get room by ID
 router.get('/:roomId', verifyToken, (req, res) => {
   const db = readDB();
   const room = db.rooms.find(r => r.id === req.params.roomId);
@@ -135,13 +121,11 @@ router.get('/:roomId', verifyToken, (req, res) => {
     return res.status(404).json({ error: 'Room not found' });
   }
 
-  // Get polls for this room
   const roomPolls = db.polls.filter(p => p.roomId === room.id);
 
   res.json({ room, polls: roomPolls });
 });
 
-// Get all rooms for user
 router.get('/user/:userEmail', verifyToken, (req, res) => {
   const db = readDB();
   const userEmail = req.params.userEmail;
@@ -153,7 +137,6 @@ router.get('/user/:userEmail', verifyToken, (req, res) => {
   res.json({ rooms: userRooms });
 });
 
-// Update room
 router.put('/:roomId', verifyToken, (req, res) => {
   const db = readDB();
   const roomIndex = db.rooms.findIndex(r => r.id === req.params.roomId);
@@ -175,7 +158,6 @@ router.put('/:roomId', verifyToken, (req, res) => {
   res.json({ room: db.rooms[roomIndex] });
 });
 
-// Remove member from room
 router.delete('/:roomId/members/:memberEmail', verifyToken, (req, res) => {
   const db = readDB();
   const roomIndex = db.rooms.findIndex(r => r.id === req.params.roomId);
@@ -198,7 +180,6 @@ router.delete('/:roomId/members/:memberEmail', verifyToken, (req, res) => {
   res.json({ room });
 });
 
-// Search rooms (all public rooms + user's rooms)
 router.get('/search/', (req, res) => {
   const token = req.headers.authorization?.replace('Bearer ', '');
   let userEmail = null;
@@ -213,15 +194,12 @@ router.get('/search/', (req, res) => {
 
   const db = readDB();
 
-  // Get user's rooms if logged in
   const userRooms = userEmail ? db.rooms.filter(r =>
     r.members.some(m => m.email === userEmail) || r.creator === userEmail
   ) : [];
 
-  // Get public rooms (not private)
   const publicRooms = db.rooms.filter(r => !r.isPrivate);
 
-  // Combine and deduplicate
   const allRooms = [...new Map([...userRooms, ...publicRooms].map(r => [r.id, r])).values()];
 
   res.json({ rooms: allRooms });
@@ -242,18 +220,14 @@ router.get('/search/:query', (req, res) => {
   const db = readDB();
   const query = req.params.query.toLowerCase();
 
-  // Get user's rooms
   const userRooms = userEmail ? db.rooms.filter(r =>
     r.members.some(m => m.email === userEmail) || r.creator === userEmail
   ) : [];
 
-  // Get public rooms (not private)
   const publicRooms = db.rooms.filter(r => !r.isPrivate);
 
-  // Combine and deduplicate
   const allRooms = [...new Map([...userRooms, ...publicRooms].map(r => [r.id, r])).values()];
 
-  // Filter by search query
   const matchingRooms = allRooms.filter(r =>
     r.name.toLowerCase().includes(query) ||
     r.description?.toLowerCase().includes(query) ||
@@ -264,7 +238,6 @@ router.get('/search/:query', (req, res) => {
   res.json({ rooms: matchingRooms });
 });
 
-// Delete room (admin only)
 router.delete('/:roomId', verifyToken, (req, res) => {
   const db = readDB();
   const roomIndex = db.rooms.findIndex(r => r.id === req.params.roomId);
@@ -275,26 +248,22 @@ router.delete('/:roomId', verifyToken, (req, res) => {
 
   const room = db.rooms[roomIndex];
 
-  // Check if user is super admin or room creator
   const isSuperAdmin = db.users.find(u => u.email === req.user.email)?.role === 'super_admin';
   if (!isSuperAdmin && room.creator !== req.user.email) {
     return res.status(403).json({ error: 'Not authorized to delete room' });
   }
 
-  // Delete related polls and votes
   const roomPolls = db.polls.filter(p => p.roomId === room.id);
   const pollIds = roomPolls.map(p => p.id);
   db.polls = db.polls.filter(p => p.roomId !== room.id);
   db.votes = db.votes.filter(v => !pollIds.includes(v.pollId));
 
-  // Delete room
   db.rooms.splice(roomIndex, 1);
   writeDB(db);
 
   res.json({ message: 'Room deleted successfully' });
 });
 
-// Update room (admin only)
 router.put('/:roomId', verifyToken, (req, res) => {
   const db = readDB();
   const roomIndex = db.rooms.findIndex(r => r.id === req.params.roomId);
@@ -320,4 +289,3 @@ router.put('/:roomId', verifyToken, (req, res) => {
 });
 
 module.exports = router;
-

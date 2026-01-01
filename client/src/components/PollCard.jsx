@@ -16,7 +16,6 @@ export default function PollCard({ poll, roomId, isAdmin, onUpdate }) {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    // Only update if the poll object actually changed or provides fresh vote info
     setPollData(poll)
     updateLocalVoteStatus(poll)
   }, [poll])
@@ -24,8 +23,6 @@ export default function PollCard({ poll, roomId, isAdmin, onUpdate }) {
   useEffect(() => {
     if (socket) {
       const onPollUpdate = (data) => {
-        // Only load if it's NOT our own vote (to prevent race conditions)
-        // or if it's a generic poll update
         if (data.pollId === poll.id) {
           if (data.voterName !== user?.name) {
             loadPoll()
@@ -71,7 +68,7 @@ export default function PollCard({ poll, roomId, isAdmin, onUpdate }) {
           roomId,
           pollId: poll.id,
           optionId,
-          voterName: user.name // Pass voter name for notifications
+          voterName: user.name
         })
       }
 
@@ -89,7 +86,6 @@ export default function PollCard({ poll, roomId, isAdmin, onUpdate }) {
     try {
       await api.closePoll(poll.id)
       if (socket) {
-        // Use vote_update as a generic "something changed" trigger for now
         socket.emit('vote_update', { roomId, pollId: poll.id })
       }
       onUpdate()
@@ -105,7 +101,6 @@ export default function PollCard({ poll, roomId, isAdmin, onUpdate }) {
   }))
 
   const isActive = pollData.status === 'active'
-  // Calculate total votes from options to be safe/robust
   const calculatedTotal = pollData.options.reduce((sum, opt) => sum + opt.votes, 0)
   const displayTotal = calculatedTotal || pollData.totalVotes || 0
 
@@ -157,7 +152,6 @@ export default function PollCard({ poll, roomId, isAdmin, onUpdate }) {
         </div>
       ) : (
         <>
-          {/* Results */}
           <div className="mb-6 space-y-4">
             {pollData.options.map((option, idx) => {
               const percentage = displayTotal > 0 ? (option.votes / displayTotal) * 100 : 0
@@ -177,14 +171,12 @@ export default function PollCard({ poll, roomId, isAdmin, onUpdate }) {
                         backgroundColor: '#000000'
                       }}
                     />
-                    {/* Overlay for text contrast if needed, but here simple bar is fine */}
                   </div>
                 </div>
               )
             })}
           </div>
 
-          {/* Charts */}
           {displayTotal > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-gray-100">
               <div>
@@ -227,4 +219,3 @@ export default function PollCard({ poll, roomId, isAdmin, onUpdate }) {
     </div>
   )
 }
-

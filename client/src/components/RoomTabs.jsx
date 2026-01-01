@@ -77,7 +77,6 @@ export default function RoomTabs({ room, polls, onUpdate, isAdmin, onCreatePoll 
 
   return (
     <div>
-      {/* Tabs */}
       <div className="border-b mb-6">
         <nav className="flex space-x-8 overflow-x-auto">
           {[
@@ -107,9 +106,7 @@ export default function RoomTabs({ room, polls, onUpdate, isAdmin, onCreatePoll 
         </nav>
       </div>
 
-      {/* Tab Content */}
       <div>
-        {/* Overview Tab */}
         {activeTab === 'overview' && (
           <div className="space-y-6">
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
@@ -216,7 +213,6 @@ export default function RoomTabs({ room, polls, onUpdate, isAdmin, onCreatePoll 
               </button>
             </div>
 
-            {/* Polls Table */}
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
@@ -277,7 +273,6 @@ export default function RoomTabs({ room, polls, onUpdate, isAdmin, onCreatePoll 
           </div>
         )}
 
-        {/* Members Tab */}
         {activeTab === 'members' && (
           <div className="space-y-6">
             <div className="flex justify-between items-center">
@@ -298,7 +293,7 @@ export default function RoomTabs({ room, polls, onUpdate, isAdmin, onCreatePoll 
                     if (email) {
                       try {
                         await api.inviteToRoom(room.id, email)
-                        alert(`✅ User ${email} invited successfully!`)
+                        alert(`User ${email} invited successfully!`)
                         onUpdate()
                       } catch (error) {
                         alert(`Failed to invite: ${error.response?.data?.error || error.message}`)
@@ -380,7 +375,6 @@ export default function RoomTabs({ room, polls, onUpdate, isAdmin, onCreatePoll 
           </div>
         )}
 
-        {/* Settings Tab */}
         {activeTab === 'settings' && isAdmin && (
           <div className="space-y-6">
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
@@ -484,7 +478,6 @@ export default function RoomTabs({ room, polls, onUpdate, isAdmin, onCreatePoll 
               </div>
             </div>
 
-            {/* Danger Zone */}
             <div className="bg-white rounded-2xl shadow-sm p-6 border border-red-100">
               <h3 className="text-lg font-semibold text-red-900 mb-4">Danger Zone</h3>
               <div className="flex flex-wrap gap-3">
@@ -505,7 +498,6 @@ export default function RoomTabs({ room, polls, onUpdate, isAdmin, onCreatePoll 
           </div>
         )}
 
-        {/* Analytics Tab */}
         {activeTab === 'analytics' && (
           <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -566,7 +558,6 @@ export default function RoomTabs({ room, polls, onUpdate, isAdmin, onCreatePoll 
           </div>
         )}
 
-        {/* Chat Tab */}
         {activeTab === 'chat' && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2">
@@ -585,7 +576,6 @@ export default function RoomTabs({ room, polls, onUpdate, isAdmin, onCreatePoll 
           </div>
         )}
 
-        {/* Activity Log Tab */}
         {activeTab === 'activity' && (
           <div className="bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
             <h3 className="text-lg font-semibold text-gray-900 mb-6">Activity Log</h3>

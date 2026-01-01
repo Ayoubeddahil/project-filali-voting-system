@@ -19,7 +19,6 @@ function verifyToken(req, res, next) {
   next();
 }
 
-// Create poll
 router.post('/create', verifyToken, (req, res) => {
   const { roomId, question, options, duration } = req.body;
   const db = readDB();
@@ -54,13 +53,11 @@ router.post('/create', verifyToken, (req, res) => {
   db.polls.push(poll);
   writeDB(db);
 
-  // Add activity
   addActivity('poll_created', `Poll "${question}" created`, req.user.email, roomId, poll.id);
 
   res.json({ poll });
 });
 
-// Get poll
 router.get('/:pollId', verifyToken, (req, res) => {
   const db = readDB();
   const poll = db.polls.find(p => p.id === req.params.pollId);
@@ -69,7 +66,6 @@ router.get('/:pollId', verifyToken, (req, res) => {
     return res.status(404).json({ error: 'Poll not found' });
   }
 
-  // Get votes for this poll
   const pollVotes = db.votes.filter(v => v.pollId === poll.id);
   const userVote = pollVotes.find(v => v.userEmail === req.user.email);
 
@@ -82,7 +78,6 @@ router.get('/:pollId', verifyToken, (req, res) => {
   res.json({ poll: enhancedPoll, votes: pollVotes });
 });
 
-// Vote on poll
 router.post('/:pollId/vote', verifyToken, (req, res) => {
   const { optionId } = req.body;
   const db = readDB();
@@ -98,13 +93,11 @@ router.post('/:pollId/vote', verifyToken, (req, res) => {
     return res.status(400).json({ error: 'Poll is not active' });
   }
 
-  // Check if user already voted
   const existingVote = db.votes.find(v =>
     v.pollId === poll.id && v.userEmail === req.user.email
   );
 
   if (existingVote) {
-    // Update existing vote
     const oldOptionIndex = poll.options.findIndex(o => o.id === existingVote.optionId);
     if (oldOptionIndex >= 0) {
       poll.options[oldOptionIndex].votes = Math.max(0, poll.options[oldOptionIndex].votes - 1);
@@ -113,7 +106,6 @@ router.post('/:pollId/vote', verifyToken, (req, res) => {
     existingVote.optionId = optionId;
     existingVote.votedAt = new Date().toISOString();
   } else {
-    // Create new vote
     db.votes.push({
       id: generateId('vote-'),
       pollId: poll.id,
@@ -124,7 +116,6 @@ router.post('/:pollId/vote', verifyToken, (req, res) => {
     poll.totalVotes += 1;
   }
 
-  // Update option votes
   const optionIndex = poll.options.findIndex(o => o.id === optionId);
   if (optionIndex >= 0) {
     poll.options[optionIndex].votes += 1;
@@ -133,14 +124,12 @@ router.post('/:pollId/vote', verifyToken, (req, res) => {
   db.polls[pollIndex] = poll;
   writeDB(db);
 
-  // Add activity
   const option = poll.options.find(o => o.id === optionId);
   addActivity('vote', `${req.user.email} voted on "${poll.question}"`, req.user.email, poll.roomId, poll.id);
 
   res.json({ poll, message: 'Vote recorded' });
 });
 
-// Get polls for room
 router.get('/room/:roomId', verifyToken, (req, res) => {
   const db = readDB();
   const polls = db.polls.filter(p => p.roomId === req.params.roomId).map(poll => {
@@ -155,7 +144,6 @@ router.get('/room/:roomId', verifyToken, (req, res) => {
   res.json({ polls });
 });
 
-// Close poll
 router.post('/:pollId/close', verifyToken, (req, res) => {
   const db = readDB();
   const pollIndex = db.polls.findIndex(p => p.id === req.params.pollId);
@@ -176,13 +164,11 @@ router.post('/:pollId/close', verifyToken, (req, res) => {
   db.polls[pollIndex] = poll;
   writeDB(db);
 
-  // Add activity
   addActivity('poll_closed', `Poll "${poll.question}" closed`, req.user.email, poll.roomId, poll.id);
 
   res.json({ poll });
 });
 
-// Search polls (all public room polls + user's room polls)
 router.get('/search/', (req, res) => {
   const token = req.headers.authorization?.replace('Bearer ', '');
   let userEmail = null;
@@ -197,20 +183,16 @@ router.get('/search/', (req, res) => {
 
   const db = readDB();
 
-  // Get user's rooms if logged in
   const userRooms = userEmail ? db.rooms.filter(r =>
     r.members.some(m => m.email === userEmail) || r.creator === userEmail
   ) : [];
   const userRoomIds = userRooms.map(r => r.id);
 
-  // Get public rooms
   const publicRooms = db.rooms.filter(r => !r.isPrivate);
   const publicRoomIds = publicRooms.map(r => r.id);
 
-  // Combine room IDs
   const allRoomIds = [...new Set([...userRoomIds, ...publicRoomIds])];
 
-  // Get all polls in these rooms
   const allPolls = db.polls.filter(p => allRoomIds.includes(p.roomId));
 
   res.json({ polls: allPolls });
@@ -231,20 +213,16 @@ router.get('/search/:query', (req, res) => {
   const db = readDB();
   const query = req.params.query.toLowerCase();
 
-  // Get user's rooms
   const userRooms = userEmail ? db.rooms.filter(r =>
     r.members.some(m => m.email === userEmail) || r.creator === userEmail
   ) : [];
   const userRoomIds = userRooms.map(r => r.id);
 
-  // Get public rooms
   const publicRooms = db.rooms.filter(r => !r.isPrivate);
   const publicRoomIds = publicRooms.map(r => r.id);
 
-  // Combine room IDs
   const allRoomIds = [...new Set([...userRoomIds, ...publicRoomIds])];
 
-  // Search polls in these rooms
   const matchingPolls = db.polls.filter(p =>
     allRoomIds.includes(p.roomId) &&
     (p.question.toLowerCase().includes(query) ||
@@ -254,7 +232,6 @@ router.get('/search/:query', (req, res) => {
   res.json({ polls: matchingPolls });
 });
 
-// Delete poll (admin only)
 router.delete('/:pollId', verifyToken, (req, res) => {
   const db = readDB();
   const pollIndex = db.polls.findIndex(p => p.id === req.params.pollId);
@@ -270,7 +247,6 @@ router.delete('/:pollId', verifyToken, (req, res) => {
     return res.status(404).json({ error: 'Room not found' });
   }
 
-  // Check if user is super admin or poll creator or room admin
   const isSuperAdmin = db.users.find(u => u.email === req.user.email)?.role === 'super_admin';
   const member = room.members.find(m => m.email === req.user.email);
   const isRoomAdmin = member?.role === 'admin' || room.creator === req.user.email;
@@ -279,7 +255,6 @@ router.delete('/:pollId', verifyToken, (req, res) => {
     return res.status(403).json({ error: 'Not authorized to delete poll' });
   }
 
-  // Delete poll and related votes
   db.polls.splice(pollIndex, 1);
   db.votes = db.votes.filter(v => v.pollId !== poll.id);
   writeDB(db);
@@ -287,7 +262,6 @@ router.delete('/:pollId', verifyToken, (req, res) => {
   res.json({ message: 'Poll deleted successfully' });
 });
 
-// Update poll (admin only)
 router.put('/:pollId', verifyToken, (req, res) => {
   const db = readDB();
   const pollIndex = db.polls.findIndex(p => p.id === req.params.pollId);
@@ -318,4 +292,3 @@ router.put('/:pollId', verifyToken, (req, res) => {
 });
 
 module.exports = router;
-

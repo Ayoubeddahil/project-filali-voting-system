@@ -14,9 +14,6 @@ export default function ChatPanel({ roomId, pollId = null }) {
         if (!socket) return
 
         const handleReceiveMessage = (message) => {
-            // Filter messages for this specific context (General vs Specific Poll)
-            // If pollId is passed prop, only show messages for that pollId
-            // If no pollId (General), only show messages with no pollId
             if (message.pollId === pollId) {
                 setMessages((prev) => [...prev, message])
             }
@@ -39,7 +36,7 @@ export default function ChatPanel({ roomId, pollId = null }) {
 
         const messageData = {
             roomId,
-            pollId, // Can be null
+            pollId,
             text: newMessage,
             user: {
                 name: user.name,
@@ -54,7 +51,6 @@ export default function ChatPanel({ roomId, pollId = null }) {
 
     return (
         <div className="flex flex-col h-[500px] bg-white rounded-lg shadow-sm border border-gray-200">
-            {/* Header */}
             <div className="p-4 border-b bg-gray-50 flex items-center gap-2 rounded-t-lg">
                 {pollId ? (
                     <MessageSquare className="w-5 h-5 text-blue-600" />
@@ -66,7 +62,6 @@ export default function ChatPanel({ roomId, pollId = null }) {
                 </span>
             </div>
 
-            {/* Messages List */}
             <div className="flex-1 overflow-y-auto p-4 space-y-4">
                 {messages.length === 0 ? (
                     <div className="text-center text-gray-400 mt-10">
@@ -95,7 +90,6 @@ export default function ChatPanel({ roomId, pollId = null }) {
                 <div ref={messagesEndRef} />
             </div>
 
-            {/* Input */}
             <form onSubmit={handleSendMessage} className="p-4 border-t bg-gray-50 rounded-b-lg">
                 <div className="flex gap-2">
                     <input

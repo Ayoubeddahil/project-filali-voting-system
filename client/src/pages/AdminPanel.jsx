@@ -70,7 +70,6 @@ export default function AdminPanel() {
 
   return (
     <div className="flex h-screen bg-gray-50">
-      {/* Sidebar */}
       <div className="w-64 bg-black text-white flex flex-col">
         <div className="p-6">
           <div className="flex items-center gap-2 mb-8">
@@ -128,7 +127,6 @@ export default function AdminPanel() {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="flex-1 overflow-auto">
         <div className="p-8">
           <h1 className="text-2xl font-bold text-gray-900 mb-8 capitalize">
@@ -137,7 +135,6 @@ export default function AdminPanel() {
 
           {activeTab === 'overview' && (
             <div className="space-y-8">
-              {/* Stats Cards */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div className="bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
                   <div className="flex justify-between items-start">
@@ -174,7 +171,6 @@ export default function AdminPanel() {
                 </div>
               </div>
 
-              {/* Charts */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div className="bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
                   <h3 className="text-lg font-semibold text-gray-900 mb-6">Room Status Distribution</h3>
